@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/gecoga98/Escritorio/4º/FSIV/cv_tutorial/test-1.cpp
+iostream
+-
+opencv2/opencv.hpp
+/home/gecoga98/Escritorio/4º/FSIV/cv_tutorial/opencv2/opencv.hpp
+stdio.h
+-
+
