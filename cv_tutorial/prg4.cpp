@@ -36,23 +36,23 @@ if (event==CV_EVENT_RBUTTONDOWN)
 
 int main(int argc,char **argv){
 try{
-//Create image 320x240
-image.create(240,320,CV_8UC3);
-//set all pixels to specified value
-image.setTo(cv::Scalar(0,244,123));
-//creates a window
-cv::namedWindow("image");
-//indicates that the on_mouse function should be called in case of mouse moved or pressed over window
-cvSetMouseCallback( "image", on_mouse, 0 );
-//shows image
-cv::imshow("image",image);
-char c=0;
-while(c!=27)  //waits until ESC pressed
-	c=cv::waitKey(0);
+  //Create image 320x240
+  image.create(240,320,CV_8UC3);
+  //set all pixels to specified value
+  image.setTo(cv::Scalar(0,244,123));
+  //creates a window
+  cv::namedWindow("image");
+  //indicates that the on_mouse function should be called in case of mouse moved or pressed over window
+  cvSetMouseCallback( "image", on_mouse, 0 );
+  //shows image
+  cv::imshow("image",image);
+  char c=0;
+  while(c!=27)  //waits until ESC pressed
+    c=cv::waitKey(0);
 
-}catch(std::exception &ex)
-{
-  cout<<ex.what()<<endl;
-}
+  }catch(std::exception &ex)
+  {
+    cout<<ex.what()<<endl;
+  }
 }
 
