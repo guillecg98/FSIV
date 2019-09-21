@@ -23,13 +23,6 @@ void on_mouse( int event, int x, int y, int flags, void* param ){
 
   if(event==CV_EVENT_LBUTTONDOWN){
     pointsVector.push_back(cv::Point(x,y));
-    if( (pointsVector.size()%2 != 0) && (pointsVector.size() != 0) ){
-      cv::Point current(x,y);
-      cout<<"last item"<<pointsVector.back()<<"\n";
-      image.copyTo(im2);
-      cv::rectangle(im2,pointsVector.back(),current,cv::Scalar(255,0,0),2,0);
-      cv::imshow("image",im2);
-    }
     if(pointsVector.size() >= k){
       drawRectangle(pointsVector[i],pointsVector[j]);
       i+=2;
@@ -43,14 +36,15 @@ void drawRectangle(cv::Point &p1,cv::Point &p2){
   cout<<"Point 1: ("<<p1.x<<","<<p1.y<<")\n";
   cout<<"Point 2: ("<<p2.x<<","<<p2.y<<")\n";
   image.copyTo(result);
-  cv::rectangle(result,p1,p2,cv::Scalar(255,255,255),2,0);//draw the rectangle
   cv::Rect myrectangle(p1,p2);//to work with points inside or outside my rectangle
-  for(int x = 0; x<result.rows; x++){
-    for(int y = 0; y<result.cols; y++){
-      if(!myrectangle.contains(cv::Point(x,y))){
-        uchar *ptr=result.ptr<uchar>(y)+3*x;
-        int grayscale = (0.11*ptr[0] + 0.59*ptr[1] + 0.3*ptr[2]);
+  cv::rectangle(result,p1,p2,cv::Scalar(0,0,0),2,0);//draw the rectangle
+  for(int i = 0; i<result.rows; i++){
+    for(int j = 0; j<result.cols; j++){
+      uchar *ptr=result.ptr<uchar>(i)+3*j;
+      if(!myrectangle.contains(cv::Point(j,i))){
+        double grayscale = (ptr[0] + ptr[1] + ptr[2])/3;
         ptr[0] = ptr[1] = ptr[2] = grayscale;
+        ptr += 3;
       }
     }
   }
