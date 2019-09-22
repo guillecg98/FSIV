@@ -1,4 +1,3 @@
-#include <opencv2/opencv.hpp>//change color to grayscale
 #include <opencv2/core/core.hpp> //core routines
 #include <opencv2/imgproc.hpp>//to draw rectangles
 #include <opencv2/core/types.hpp>//to add points
@@ -10,12 +9,12 @@
 
 using namespace std;
 
-void drawRectangle(cv::Point &p1,cv::Point &p2);
+void drawRectangle(int number,cv::Point &p1,cv::Point &p2);
 
 cv::Mat image,result,im2;
-vector<cv::Point> pointsVector;
-vector<cv::Vec3b> pixelVec;
-int i = 0, j = 1, k = 2;;
+vector<cv::Point> pointsVector;//save pixels clicked
+int i = 0, j = 1, k = 2;//control vector of points
+int number = 1;
 
 
 //firstcallback function. Whenever the mouse is moved or a button pressed, this function is called
@@ -23,25 +22,26 @@ void on_mouse( int event, int x, int y, int flags, void* param ){
 
   if(event==CV_EVENT_LBUTTONDOWN){
     pointsVector.push_back(cv::Point(x,y));
-    if(pointsVector.size() >= k){
-      drawRectangle(pointsVector[i],pointsVector[j]);
-      i+=2;
-      j+=2;
-      k+=2;
+    if(pointsVector.size() >= k){//when we get 2 or more points we could draw a rectangle
+      drawRectangle(number,pointsVector[i],pointsVector[j]);
+      i+=2;//supposed to be the first point of the next rectangle
+      j+=2;//supposed to be the second point of the next rectangle
+      k+=2;//controls the size of the vector
+      number++;
     }
   }
 }
 
-void drawRectangle(cv::Point &p1,cv::Point &p2){
-  cout<<"Point 1: ("<<p1.x<<","<<p1.y<<")\n";
-  cout<<"Point 2: ("<<p2.x<<","<<p2.y<<")\n";
+void drawRectangle(int number,cv::Point &p1,cv::Point &p2){
+  cout<<"Rectangle number "<<number<<" Point 1: ("<<p1.x<<","<<p1.y<<")\n";
+  cout<<"Rectangle number "<<number<<" Point 2: ("<<p2.x<<","<<p2.y<<")\n";
   image.copyTo(result);
   cv::Rect myrectangle(p1,p2);//to work with points inside or outside my rectangle
   cv::rectangle(result,p1,p2,cv::Scalar(0,0,0),2,0);//draw the rectangle
-  for(int i = 0; i<result.rows; i++){
-    for(int j = 0; j<result.cols; j++){
-      uchar *ptr=result.ptr<uchar>(i)+3*j;
-      if(!myrectangle.contains(cv::Point(j,i))){
+  for(int currentx = 0; currentx<result.rows; currentx++){
+    for(int currenty = 0; currenty<result.cols; currenty++){
+      uchar *ptr=result.ptr<uchar>(currentx)+3*currenty;
+      if(!myrectangle.contains(cv::Point(currenty,currentx))){
         double grayscale = (ptr[0] + ptr[1] + ptr[2])/3;
         ptr[0] = ptr[1] = ptr[2] = grayscale;
         ptr += 3;
