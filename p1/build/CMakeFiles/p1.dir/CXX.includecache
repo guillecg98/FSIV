@@ -7,8 +7,6 @@
 #IncludeRegexTransform: 
 
 /home/gecoga98/Escritorio/4º/FSIV/p1/p1.cpp
-opencv2/opencv.hpp
--
 opencv2/core/core.hpp
 -
 opencv2/imgproc.hpp
