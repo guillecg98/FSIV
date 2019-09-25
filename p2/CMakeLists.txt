@@ -1,9 +1,9 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-PROJECT(p1)
+PROJECT(p2)
 FIND_PACKAGE(OpenCV 	REQUIRED )
 include_directories ("${OpenCV_INCLUDE_DIRS}")
 #Required for uco thinstation. May not be required in your own pc
-OPTION(THINSTATION	"Set to OFF at home" ON)
+OPTION(THINSTATION	"Set to OFF at home" OFF)
 
 IF(THINSTATION)
   SET(CMAKE_CXX_FLAGS " -D_GLIBCXX_USE_CXX11_ABI=0 -m32")
