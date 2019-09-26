@@ -9,8 +9,8 @@
 
 using namespace std;
 
-cv::Mat image,result;
-void processImg(float c,float b,float g);
+cv::Mat image,normalized,result;
+void processImg(float c,float b,float g,string output_name);
 
 // Copy in your program!
 class CmdLineParser{
@@ -33,28 +33,22 @@ public:
    }
 };
 
-void processImg(float c,float b,float g){
-  image.copyTo(result);
-  float pixel = 0;
-  float normalized = 0;
-  for(int x = 0; x < result.rows; x++){
-    for(int y = 0; y < result.cols; y++){
-      uchar *ptr = result.ptr<uchar>(y)+3*x;
-      pixel = (ptr[0] + ptr[1] + ptr[2]) / 255;
-      ptr += 3;
-      normalized +=pixel;
-    }
-  }
-  normalized = c * (pow(normalized,g)) + b;
+void processImg(float c,float b,float g,string output_name){
+  image.convertTo(normalized,CV_32F,1./255.);
+  cerr<<"C = "<<c<<" B = "<<b<<" G = "<<g<<"\n";
   //denormalize the image
-  for(int x = 0; x < result.rows; x++){
-    for(int y = 0; y < result.cols; y++){
-      uchar *ptr = result.ptr<uchar>(y)+3*x;
-      ptr[0] = ptr[1] = ptr[2] = normalized;
+  for(int x = 0; x < normalized.rows; x++){
+    for(int y = 0; y < normalized.cols; y++){
+      float *ptr = normalized.ptr<float>(x)+3*y;
+      ptr[0] = c * pow(ptr[0],g) + b;
+      ptr[1] = c * pow(ptr[1],g) + b;
+      ptr[2] = c * pow(ptr[2],g) + b;
       ptr += 3;
     }
   }
-  cv::imshow("Processed",result);
+  normalized.convertTo(result,CV_8UC3,255);
+  cv::imshow(output_name,result);
+  cv::imwrite(output_name,result);
 }
 
 
@@ -103,7 +97,10 @@ int main(int argc,char **argv){
     cerr<<"c option is in the command line = "<<c<<"\n";
     cerr<<"b option is in the command line = "<<b<<"\n";
     cerr<<"g option is in the command line = "<<g<<"\n";
-    //processImg(c,b,g);
+    processImg(c,b,g,argv[2]);
+    char c=0;
+    while(c!=27)  //waits until ESC pressed
+      c=cv::waitKey(0);
   }
   catch(const std::exception& ex)
   {
