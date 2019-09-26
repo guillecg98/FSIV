@@ -33,6 +33,10 @@ public:
    }
 };
 
+void on_trackbar(int,void*){
+
+}
+
 void processImg(float c,float b,float g,string output_name){
   image.convertTo(normalized,CV_32F,1./255.);
   cerr<<"C = "<<c<<" B = "<<b<<" G = "<<g<<"\n";
@@ -57,9 +61,9 @@ int main(int argc,char **argv){
 
   CmdLineParser cml(argc,argv);
   float c,b,g;
+  int contrast = 0;
   //check if a command is present
   try{
-
     if(argc < 3){
       cerr<<"Usage: <input img> <output img>\n Options:\n \t[-i interactive mode] \n \t[-c range: [0,2]] \n \t[-b range: [-1,1]] \n \t[-g range: [0-2]]"<<endl;
       return 0;
@@ -93,6 +97,7 @@ int main(int argc,char **argv){
 
     cv::namedWindow("image");
     cv::imshow("image",image);
+    cv::createTrackbar("Contrast","image",&contrast,2,on_trackbar);
 
     cerr<<"c option is in the command line = "<<c<<"\n";
     cerr<<"b option is in the command line = "<<b<<"\n";
