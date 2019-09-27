@@ -9,10 +9,6 @@
 
 using namespace std;
 
-cv::Mat image,normalized,result;
-void processImg(float c,float b,float g,string output_name);
-
-// Copy in your program!
 class CmdLineParser{
    int argc;
    char **argv;
@@ -33,11 +29,26 @@ public:
    }
 };
 
-void on_trackbar(int,void*){
+//global vars
+cv::Mat image,normalized;
+double c = 1,b = 0,g = 1;
 
+//function to process image
+void processImg(float c,float b,float g);
+
+void on_trackbar_contrast(int contrast,void *){
+  c = (contrast * 2) / 10;
+  cerr<<"C values = "<<c<<"\n";
+  processImg(c,b,g);
 }
 
-void processImg(float c,float b,float g,string output_name){
+void on_trackbar_gamma(int gamma,void *){
+  g = (gamma * 2) / 10;
+  cerr<<"G values = "<<g<<"\n";
+  processImg(c,b,g);
+}
+
+void processImg(float c,float b,float g){
 
   image.convertTo(normalized,CV_32F,1./255.);
   cerr<<"C = "<<c<<" B = "<<b<<" G = "<<g<<"\n";
@@ -51,8 +62,7 @@ void processImg(float c,float b,float g,string output_name){
       ptr += 3;
     }
   }
-  //normalized.convertTo(result,CV_8UC3,255);
-  cv::imshow(output_name,normalized);
+  cv::imshow("processed",normalized);
   //cv::imwrite(output_name,result); PARA GUARDAR LA IMAGEN RESULTADO
 }
 
@@ -61,7 +71,6 @@ void processImg(float c,float b,float g,string output_name){
 int main(int argc,char **argv){
 
   CmdLineParser cml(argc,argv);
-  float c = 1,b = 0,g = 1;
   //check if a command is present
   try{
     if(argc < 3){
@@ -101,17 +110,27 @@ int main(int argc,char **argv){
       }
     }
     if(cml["-i"]){ //interactive mode
+      int contrast = 0;
+      int gamma = 0;
+      cv::namedWindow("image");
+      cv::imshow("image",image);
+      cv::createTrackbar("Contrast","image",&contrast,10,on_trackbar_contrast,0);
+      cv::createTrackbar("Gamma","image",&gamma,10,on_trackbar_gamma,0);
+      // cv::createTrackbar("Brightness","image",0,100,0,&b);
+      // cv::createTrackbar("Gamma","image",0,100,0,&g);
 
+      cerr<<"c option is in the command line = "<<c<<"\n";
+      cerr<<"b option is in the command line = "<<b<<"\n";
+      cerr<<"g option is in the command line = "<<g<<"\n";
+    }else{
+      cv::namedWindow("image");
+      cv::imshow("image",image);
+
+      cerr<<"c option is in the command line = "<<c<<"\n";
+      cerr<<"b option is in the command line = "<<b<<"\n";
+      cerr<<"g option is in the command line = "<<g<<"\n";
+      processImg(c,b,g);
     }
-
-    cv::namedWindow("image");
-    cv::imshow("image",image);
-    //cv::createTrackbar("Contrast","image",&contrast,2,on_trackbar);
-
-    cerr<<"c option is in the command line = "<<c<<"\n";
-    cerr<<"b option is in the command line = "<<b<<"\n";
-    cerr<<"g option is in the command line = "<<g<<"\n";
-    processImg(c,b,g,argv[2]);
     char c=0;
     while(c!=27)  //waits until ESC pressed
       c=cv::waitKey(0);
