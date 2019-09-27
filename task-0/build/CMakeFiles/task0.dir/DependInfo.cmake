@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gecoga98/Escritorio/4º/FSIV/p1/task0.cpp" "/home/gecoga98/Escritorio/4º/FSIV/p1/build/CMakeFiles/task0.dir/task0.cpp.o"
+  "/home/gecoga98/Escritorio/4º/FSIV/task-0/task0.cpp" "/home/gecoga98/Escritorio/4º/FSIV/task-0/build/CMakeFiles/task0.dir/task0.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
