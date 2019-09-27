@@ -38,6 +38,7 @@ void on_trackbar(int,void*){
 }
 
 void processImg(float c,float b,float g,string output_name){
+
   image.convertTo(normalized,CV_32F,1./255.);
   cerr<<"C = "<<c<<" B = "<<b<<" G = "<<g<<"\n";
   //denormalize the image
@@ -50,8 +51,8 @@ void processImg(float c,float b,float g,string output_name){
       ptr += 3;
     }
   }
-  normalized.convertTo(result,CV_8UC3,255);
-  cv::imshow(output_name,result);
+  //normalized.convertTo(result,CV_8UC3,255);
+  cv::imshow(output_name,normalized);
   //cv::imwrite(output_name,result); PARA GUARDAR LA IMAGEN RESULTADO
 }
 
@@ -61,7 +62,6 @@ int main(int argc,char **argv){
 
   CmdLineParser cml(argc,argv);
   float c = 1,b = 0,g = 1;
-  int contrast = 0;
   //check if a command is present
   try{
     if(argc < 3){
@@ -99,6 +99,9 @@ int main(int argc,char **argv){
       }else{
         g = 1;
       }
+    }
+    if(cml["-i"]){ //interactive mode
+
     }
 
     cv::namedWindow("image");

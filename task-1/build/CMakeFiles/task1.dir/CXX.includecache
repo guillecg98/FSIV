@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/gecoga98/Escritorio/4º/FSIV/p2/task1.cpp
+/home/gecoga98/Escritorio/4º/FSIV/task-1/task1.cpp
 opencv2/core/core.hpp
 -
 opencv2/imgproc.hpp
