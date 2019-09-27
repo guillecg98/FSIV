@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named p2
+# Target rules for targets named task1
 
 # Build rule for target.
-p2: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 p2
-.PHONY : p2
+task1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 task1
+.PHONY : task1
 
 # fast build rule for target.
-p2/fast:
-	$(MAKE) -f CMakeFiles/p2.dir/build.make CMakeFiles/p2.dir/build
-.PHONY : p2/fast
+task1/fast:
+	$(MAKE) -f CMakeFiles/task1.dir/build.make CMakeFiles/task1.dir/build
+.PHONY : task1/fast
 
-p2.o: p2.cpp.o
+task1.o: task1.cpp.o
 
-.PHONY : p2.o
+.PHONY : task1.o
 
 # target to build an object file
-p2.cpp.o:
-	$(MAKE) -f CMakeFiles/p2.dir/build.make CMakeFiles/p2.dir/p2.cpp.o
-.PHONY : p2.cpp.o
+task1.cpp.o:
+	$(MAKE) -f CMakeFiles/task1.dir/build.make CMakeFiles/task1.dir/task1.cpp.o
+.PHONY : task1.cpp.o
 
-p2.i: p2.cpp.i
+task1.i: task1.cpp.i
 
-.PHONY : p2.i
+.PHONY : task1.i
 
 # target to preprocess a source file
-p2.cpp.i:
-	$(MAKE) -f CMakeFiles/p2.dir/build.make CMakeFiles/p2.dir/p2.cpp.i
-.PHONY : p2.cpp.i
+task1.cpp.i:
+	$(MAKE) -f CMakeFiles/task1.dir/build.make CMakeFiles/task1.dir/task1.cpp.i
+.PHONY : task1.cpp.i
 
-p2.s: p2.cpp.s
+task1.s: task1.cpp.s
 
-.PHONY : p2.s
+.PHONY : task1.s
 
 # target to generate assembly for a file
-p2.cpp.s:
-	$(MAKE) -f CMakeFiles/p2.dir/build.make CMakeFiles/p2.dir/p2.cpp.s
-.PHONY : p2.cpp.s
+task1.cpp.s:
+	$(MAKE) -f CMakeFiles/task1.dir/build.make CMakeFiles/task1.dir/task1.cpp.s
+.PHONY : task1.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... p2"
+	@echo "... task1"
 	@echo "... edit_cache"
-	@echo "... p2.o"
-	@echo "... p2.i"
-	@echo "... p2.s"
+	@echo "... task1.o"
+	@echo "... task1.i"
+	@echo "... task1.s"
 .PHONY : help
 
 
