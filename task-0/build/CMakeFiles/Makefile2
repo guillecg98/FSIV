@@ -60,39 +60,39 @@ CMAKE_SOURCE_DIR = /home/gecoga98/Escritorio/4º/FSIV/p1
 CMAKE_BINARY_DIR = /home/gecoga98/Escritorio/4º/FSIV/p1/build
 
 #=============================================================================
-# Target rules for target CMakeFiles/p1.dir
+# Target rules for target CMakeFiles/task0.dir
 
 # All Build rule for target.
-CMakeFiles/p1.dir/all:
-	$(MAKE) -f CMakeFiles/p1.dir/build.make CMakeFiles/p1.dir/depend
-	$(MAKE) -f CMakeFiles/p1.dir/build.make CMakeFiles/p1.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/p1/build/CMakeFiles --progress-num=1,2 "Built target p1"
-.PHONY : CMakeFiles/p1.dir/all
+CMakeFiles/task0.dir/all:
+	$(MAKE) -f CMakeFiles/task0.dir/build.make CMakeFiles/task0.dir/depend
+	$(MAKE) -f CMakeFiles/task0.dir/build.make CMakeFiles/task0.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/p1/build/CMakeFiles --progress-num=1,2 "Built target task0"
+.PHONY : CMakeFiles/task0.dir/all
 
 # Include target in all.
-all: CMakeFiles/p1.dir/all
+all: CMakeFiles/task0.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/p1.dir/rule: cmake_check_build_system
+CMakeFiles/task0.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/gecoga98/Escritorio/4º/FSIV/p1/build/CMakeFiles 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/p1.dir/all
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/task0.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/gecoga98/Escritorio/4º/FSIV/p1/build/CMakeFiles 0
-.PHONY : CMakeFiles/p1.dir/rule
+.PHONY : CMakeFiles/task0.dir/rule
 
 # Convenience name for target.
-p1: CMakeFiles/p1.dir/rule
+task0: CMakeFiles/task0.dir/rule
 
-.PHONY : p1
-
-# clean rule for target.
-CMakeFiles/p1.dir/clean:
-	$(MAKE) -f CMakeFiles/p1.dir/build.make CMakeFiles/p1.dir/clean
-.PHONY : CMakeFiles/p1.dir/clean
+.PHONY : task0
 
 # clean rule for target.
-clean: CMakeFiles/p1.dir/clean
+CMakeFiles/task0.dir/clean:
+	$(MAKE) -f CMakeFiles/task0.dir/build.make CMakeFiles/task0.dir/clean
+.PHONY : CMakeFiles/task0.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/task0.dir/clean
 
 .PHONY : clean
 

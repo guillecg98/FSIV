@@ -130,7 +130,7 @@ CMAKE_OBJCOPY:FILEPATH=/usr/bin/objcopy
 CMAKE_OBJDUMP:FILEPATH=/usr/bin/objdump
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=p1
+CMAKE_PROJECT_NAME:STATIC=task0
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -192,6 +192,12 @@ p1_BINARY_DIR:STATIC=/home/gecoga98/Escritorio/4º/FSIV/p1/build
 
 //Value Computed by CMake
 p1_SOURCE_DIR:STATIC=/home/gecoga98/Escritorio/4º/FSIV/p1
+
+//Value Computed by CMake
+task0_BINARY_DIR:STATIC=/home/gecoga98/Escritorio/4º/FSIV/p1/build
+
+//Value Computed by CMake
+task0_SOURCE_DIR:STATIC=/home/gecoga98/Escritorio/4º/FSIV/p1
 
 
 ########################

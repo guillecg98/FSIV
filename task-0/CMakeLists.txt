@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
-PROJECT(p1)
+PROJECT(task0)
 FIND_PACKAGE(OpenCV 	REQUIRED )
 include_directories ("${OpenCV_INCLUDE_DIRS}")
 #Required for uco thinstation. May not be required in your own pc
@@ -14,4 +14,4 @@ ENDIF()
 
 LINK_LIBRARIES(${OpenCV_LIBS} ${XRAND})
 
-add_executable(p1 p1.cpp)
+add_executable(task0 task0.cpp)
