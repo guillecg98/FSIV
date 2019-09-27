@@ -52,7 +52,7 @@ void processImg(float c,float b,float g,string output_name){
   }
   normalized.convertTo(result,CV_8UC3,255);
   cv::imshow(output_name,result);
-  cv::imwrite(output_name,result);
+  //cv::imwrite(output_name,result); PARA GUARDAR LA IMAGEN RESULTADO
 }
 
 
@@ -60,7 +60,7 @@ void processImg(float c,float b,float g,string output_name){
 int main(int argc,char **argv){
 
   CmdLineParser cml(argc,argv);
-  float c,b,g;
+  float c = 1,b = 0,g = 1;
   int contrast = 0;
   //check if a command is present
   try{
@@ -76,28 +76,34 @@ int main(int argc,char **argv){
       return 0;
     }
 
-    if (cml["-c"]){
-      c = std::stof( cml("-c"));//convert to float
-      //int i= std::stoi( cml("-p"));//convert to int
-    }else{//used with default values
-      c = std::stof(cml("-c","1"));//if -p is not, then, return 1
+    if(cml["-c"]){
+      if( (stof(cml("-c")) >= 0) && (stof(cml("-c")) <= 2) ){
+        c = std::stof(cml("-c"));//convert to float
+        //int i= std::stoi( cml("-p"));//convert to int
+      }else{
+        c = 1;
+      }
     }
-    if (cml["-b"]){
-      b = std::stof( cml("-b"));//convert to float
-      //int i= std::stoi( cml("-p"));//convert to int
-    }else{  //used with default values
-      b = std::stof(cml("-b","0"));//if -p is not, then, return 1
+    if(cml["-b"]){
+      if( (stof(cml("-b")) >= -1) && (stof(cml("-b")) <= 1) ){
+        b = std::stof(cml("-b"));//convert to float
+        //int i= std::stoi( cml("-p"));//convert to int
+      }else{
+        b = 0;
+      }
     }
-    if (cml["-g"]){
-      g = std::stof( cml("-g"));//convert to float
-      //int i= std::stoi( cml("-p"));//convert to int
-    }else{  //used with default values
-      g = std::stof(cml("-g","1"));//if -p is not, then, return 1
+    if(cml["-g"]){
+      if( (stof(cml("-g")) >= 0) && (stof(cml("-g")) <= 2) ){
+        g = std::stof(cml("-g"));//convert to float
+        //int i= std::stoi( cml("-p"));//convert to int
+      }else{
+        g = 1;
+      }
     }
 
     cv::namedWindow("image");
     cv::imshow("image",image);
-    cv::createTrackbar("Contrast","image",&contrast,2,on_trackbar);
+    //cv::createTrackbar("Contrast","image",&contrast,2,on_trackbar);
 
     cerr<<"c option is in the command line = "<<c<<"\n";
     cerr<<"b option is in the command line = "<<b<<"\n";
