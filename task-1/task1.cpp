@@ -38,13 +38,24 @@ void processImg(float c,float b,float g);
 
 void on_trackbar_contrast(int contrast,void *){
   c = (contrast * 2) / 10;
-  cerr<<"C values = "<<c<<"\n";
   processImg(c,b,g);
 }
 
 void on_trackbar_gamma(int gamma,void *){
   g = (gamma * 2) / 10;
-  cerr<<"G values = "<<g<<"\n";
+  processImg(c,b,g);
+}
+
+void on_trackbar_brightness(int brightness,void *){
+  if(brightness == 5){
+    b = 0;
+  }else{
+    if(brightness > 5){
+    b = brightness / 10;
+    }else{
+      b = -1 + (brightness/10);
+    }
+  }
   processImg(c,b,g);
 }
 
@@ -110,14 +121,14 @@ int main(int argc,char **argv){
       }
     }
     if(cml["-i"]){ //interactive mode
-      int contrast = 0;
-      int gamma = 0;
+      int contrast = 5;
+      int gamma = 5;
+      int brightness = 5;
       cv::namedWindow("image");
       cv::imshow("image",image);
       cv::createTrackbar("Contrast","image",&contrast,10,on_trackbar_contrast,0);
       cv::createTrackbar("Gamma","image",&gamma,10,on_trackbar_gamma,0);
-      // cv::createTrackbar("Brightness","image",0,100,0,&b);
-      // cv::createTrackbar("Gamma","image",0,100,0,&g);
+      cv::createTrackbar("Brightness","image",&brightness,10,on_trackbar_brightness,0);
 
       cerr<<"c option is in the command line = "<<c<<"\n";
       cerr<<"b option is in the command line = "<<b<<"\n";
