@@ -74,7 +74,7 @@ void processImg(float c,float b,float g){
     }
   }
   cv::imshow("processed",normalized);
-  //cv::imwrite(output_name,result); PARA GUARDAR LA IMAGEN RESULTADO
+  //cv::imwrite("out.jpg",normalized); //PARA GUARDAR LA IMAGEN RESULTADO
 }
 
 
