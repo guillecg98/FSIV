@@ -30,23 +30,25 @@ public:
 };
 
 //global vars
-cv::Mat image,normalized;
 double c = 1,b = 0,g = 1;
 
 //function to process image
-void processImg(float c,float b,float g);
+void processImg(cv::Mat image,float c,float b,float g);
 
-void on_trackbar_contrast(int contrast,void *){
+void on_trackbar_contrast(int contrast,void *userdata){
+  cv::Mat img = *((cv::Mat*)userdata);
   c = (contrast * 2.0) / 200.0;
-  processImg(c,b,g);
+  processImg(img,c,b,g);
 }
 
-void on_trackbar_gamma(int gamma,void *){
+void on_trackbar_gamma(int gamma,void * userdata){
+  cv::Mat img = *((cv::Mat*)userdata);
   g = (gamma * 2.0) / 200.0;
-  processImg(c,b,g);
+  processImg(img,c,b,g);
 }
 
-void on_trackbar_brightness(int brightness,void *){
+void on_trackbar_brightness(int brightness,void * userdata){
+  cv::Mat img = *((cv::Mat*)userdata);
   if(brightness == 100){
     b = 0.0;
   }else{
@@ -56,14 +58,13 @@ void on_trackbar_brightness(int brightness,void *){
       b = -1 + (brightness/200.0);
     }
   }
-  processImg(c,b,g);
+  processImg(img,c,b,g);
 }
 
-void processImg(float c,float b,float g){
+void processImg(cv::Mat image,float c,float b,float g){
 
+  cv::Mat normalized,result;
   image.convertTo(normalized,CV_32F,1./255.);
-  cerr<<"C = "<<c<<" B = "<<b<<" G = "<<g<<"\n";
-  //denormalize the image
   for(int x = 0; x < normalized.rows; x++){
     for(int y = 0; y < normalized.cols; y++){
       float *ptr = normalized.ptr<float>(x)+3*y;
@@ -74,13 +75,15 @@ void processImg(float c,float b,float g){
     }
   }
   cv::imshow("processed",normalized);
-  //cv::imwrite("out.jpg",normalized); //PARA GUARDAR LA IMAGEN RESULTADO
+  normalized.convertTo(result,CV_8UC3,255);
+  cv::imwrite("out.jpg",result); //PARA GUARDAR LA IMAGEN RESULTADO
 }
 
 
 //Example of use
 int main(int argc,char **argv){
 
+  cv::Mat image;
   CmdLineParser cml(argc,argv);
   //check if a command is present
   try{
@@ -126,9 +129,9 @@ int main(int argc,char **argv){
       int brightness = 100;
       cv::namedWindow("image");
       cv::imshow("image",image);
-      cv::createTrackbar("Contrast","image",&contrast,200,on_trackbar_contrast,0);
-      cv::createTrackbar("Gamma","image",&gamma,200,on_trackbar_gamma,0);
-      cv::createTrackbar("Brightness","image",&brightness,200,on_trackbar_brightness,0);
+      cv::createTrackbar("Contrast","image",&contrast,200,on_trackbar_contrast,(void *) &image);
+      cv::createTrackbar("Gamma","image",&gamma,200,on_trackbar_gamma,(void *) &image);
+      cv::createTrackbar("Bright","image",&brightness,200,on_trackbar_brightness,(void *) &image);
 
       cerr<<"c option is in the command line = "<<c<<"\n";
       cerr<<"b option is in the command line = "<<b<<"\n";
@@ -140,7 +143,7 @@ int main(int argc,char **argv){
       cerr<<"c option is in the command line = "<<c<<"\n";
       cerr<<"b option is in the command line = "<<b<<"\n";
       cerr<<"g option is in the command line = "<<g<<"\n";
-      processImg(c,b,g);
+      processImg(image,c,b,g);
     }
     char c=0;
     while(c!=27)  //waits until ESC pressed
