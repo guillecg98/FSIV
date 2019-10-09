@@ -14,4 +14,4 @@ ENDIF()
 
 LINK_LIBRARIES(${OpenCV_LIBS} ${XRAND})
 
-add_executable(task3 task3.cpp)
+add_executable(task3 main.cpp task3.cpp)
