@@ -2,28 +2,32 @@
 
 cv::Mat create_sharp_filter(int &f, float &g){
     //creamos el filtro 3x3
-    cv::Mat filter(3,3,CV_32FC1,0.0);
+    cv::Mat filter(3,3,CV_32FC1,-1);
 
-        if(f == 1){
-            //devolver filtro 9 puntos
-            for(int x = 0; x < filter.rows; x++){
-                float *ptr = filter.ptr<float>(x);
-                for(int y = 0; y < filter.cols; y++){
-                    ptr[y] =1/pow(filter.rows, 2);
-                    /*if( (x == 1) && (y == 1)){
-                        ptr[0] == g+8;
-                    }else{
-                        ptr[0] == -1;
-                    }*/
+    if(f == 1){
+        std::cerr<<"Entro if\n";
+        //devolver filtro 9 puntos
+        for(int x = 0; x < filter.rows; x++){
+            float *ptr = filter.ptr<float>(x);
+            for(int y = 0; y < filter.cols; y++){
+                if( (x == 1) && (y == 1) ){
+                    ptr[y] = g+8;
                 }
             }
-        }/*else{//devolver filtro 9 puntos
+        }
+    }else{//devolver filtro 9 puntos
         for(int x = 0; x < filter.rows; x++){
+            float *ptr = filter.ptr<float>(x);
             for(int y = 0; y < filter.cols; y++){
-                uchar *ptr = filter.ptr<uchar>(x)+y;
+                if( (x == 1) && (y == 1) ){
+                    ptr[y] = g+4;
+                }
+                if( ((x == 0) && (y == 0)) || ((x == 0) && (y == 2)) || ((x == 2) && (y == 0)) || ((x == 2) && (y == 2)) ){
+                    ptr[y] = 0;
+                }
             }
         }
-    }*/
+    }
 
     return filter;
 }

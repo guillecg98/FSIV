@@ -21,8 +21,8 @@ int main(int argc,char **argv){
         }
 
         if(cml["-f"]){
-            if( (stoi(cml("-f")) >= 0) && (stoi(cml("-c")) <= 1) ){
-                int f= std::stoi( cml("-f"));//convert to int
+            if( (stoi(cml("-f")) >= 0) && (stoi(cml("-f")) <= 1) ){
+                f = std::stoi( cml("-f"));//convert to int
             }else{
                 f = 0;
             }
@@ -36,6 +36,8 @@ int main(int argc,char **argv){
         }
 
         //do things
+        std::cerr<<"f == "<<f<<"\n";
+        std::cerr<<"g == "<<g<<"\n";
         filter = create_sharp_filter(f,g);
 
 

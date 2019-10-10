@@ -19,6 +19,7 @@ void processImage();
 void processImage(){
   image.copyTo(histogram);
   int total_pixels = histogram.rows * histogram.cols;
+  
   for(int x = 0; x < histogram.rows; x++){
     for(int y = 0; y < histogram.cols; y++){
       uchar *ptr = histogram.ptr<uchar>(x)+y;
