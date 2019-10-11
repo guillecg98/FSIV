@@ -9,6 +9,7 @@
 #include <iostream>
 #include <vector>//to use stl vectors
 #include <cmath>//for pow function
+#include <cassert>
 
 using namespace std;
 
@@ -33,5 +34,8 @@ public:
 };
 
 cv::Mat create_sharp_filter(int &f, float &g);
+void convolve(cv::Mat &image, cv::Mat &filter, cv::Mat result);
+float apply_filter(cv::Mat &filter, cv::Mat &subImage);
+cv::Mat get_sub_image(cv::Mat &image, int i, int j);
 
 #endif

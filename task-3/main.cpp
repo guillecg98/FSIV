@@ -2,9 +2,10 @@
 
 int main(int argc,char **argv){
 
-    cv::Mat image,filter;
-    float g;
-    int f;
+    cv::Mat image,filter,result;
+
+    float g = 0;
+    int f = 0;
     CmdLineParser cml(argc,argv);
     //check if a command is present
     try{
@@ -13,7 +14,12 @@ int main(int argc,char **argv){
             return 0;
         }
 
-        image=cv::imread(argv[1]);
+        image=cv::imread(argv[1],CV_LOAD_IMAGE_ANYDEPTH);
+        image.convertTo(image,CV_32FC1,1./255.);
+        image.copyTo(result);
+
+        cv::imshow("Original",image);
+
 
         if( image.rows==0){
             cerr<<"Error reading image"<<endl;
@@ -40,18 +46,17 @@ int main(int argc,char **argv){
         std::cerr<<"g == "<<g<<"\n";
         filter = create_sharp_filter(f,g);
 
+        std::cerr<<"Type of 'Image' = "<<image.type()<<"\n";
+        std::cerr<<"Type of 'Filter' = "<<filter.type()<<"\n";
 
-        for(int x = 0; x < filter.rows; x++){
-            float *ptr = filter.ptr<float>(x);
-            for(int y = 0; y < filter.cols; y++){
-                std::cout<<"filtro["<<x<<"]["<<y<<"] = "<<ptr[y]<<"\t";
-            }
-            std::cout<<"\n";
-        }
+        //filter2D(image,result,-1,filter);
+        cv::imshow("Convolved",result);
+        //make convolution
+        convolve(image,filter,result);
 
-        // char c=0;
-        // while(c!=27)  //waits until ESC pressed
-        // c=cv::waitKey(0);
+        char c=0;
+        while(c!=27)  //waits until ESC pressed
+        c=cv::waitKey(0);
     }
     catch(const std::exception& ex){
         std::cerr << ex.what() << '\n';
