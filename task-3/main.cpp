@@ -50,7 +50,6 @@ int main(int argc,char **argv){
         std::cerr<<"Type of 'Filter' = "<<filter.type()<<"\n";
 
         //filter2D(image,result,-1,filter);
-        cv::imshow("Convolved",result);
         //make convolution
         convolve(image,filter,result);
 

@@ -32,22 +32,36 @@ cv::Mat create_sharp_filter(int &f, float &g){
     return filter;
 }
 
-void convolve(cv::Mat &image, cv::Mat &filter, cv::Mat result){
+void convolve(const cv::Mat &image, cv::Mat &filter, cv::Mat result){
 
     #ifndef NDEBUG
         assert( filter.type() == 5 );
         assert ( image.type() == 5 );
     #endif
 
-    for(int x = 0; x < image.rows - 1; x++){
-        float *ptr = image.ptr<float>(x);
-        for(int y = 0; y < image.cols - 1; y++){
-            cv::Mat subImage = get_sub_image(image,x,y);
+    image.copyTo(result);
+    //making the convolution
+    for(int x = 1; x < result.rows - 1; x++){
+        float *ptr = result.ptr<float>(x);
+        for(int y = 1; y < result.cols - 1; y++){
+            cv::Mat subImage = get_sub_image(result,x,y);
             ptr[y] = apply_filter(filter,subImage);
         }
     }
+    //filling borders with zeros
+    for(int x = 0; x < result.rows+1; x++){
+        float *ptr = result.ptr<float>(x);
+        for(int y = 0; y < result.cols+1; y++){
+            if( (x == 0) || (x == result.rows) ){
+                ptr[y] = 0;
+            }
+            if( (y == 0) || (y == result.cols) ){
+                ptr[y] = 0;
+            }
+        }
+    }
 
-    cv::imshow("Convolved",image);
+    cv::imshow("Convolved",result);
 }
 
 float apply_filter(cv::Mat &filter, cv::Mat &subImage){
@@ -68,14 +82,16 @@ float apply_filter(cv::Mat &filter, cv::Mat &subImage){
     return result / 9;
 }
 
+
+//pilla bien las submatrices
 cv::Mat get_sub_image(cv::Mat &image, int i, int j){
 
     cv::Mat sub(3,3,CV_32FC1);
     for(int x = 0; x < 3; x++){
-        float *ptr_image = image.ptr<float>(x+i);
+        float *ptr_image = image.ptr<float>(x+i-1);
         float *ptr_sub_image = sub.ptr<float>(x);
         for(int y = 0; y < 3; y++){
-            ptr_sub_image[y] = ptr_image[y+j];
+            ptr_sub_image[y] = ptr_image[y+j-1];
         }
     }
 
