@@ -1,0 +1,3 @@
+/home/gecoga98/Escritorio/4º/FSIV/task-4/build/CMakeFiles/rebuild_cache.dir
+/home/gecoga98/Escritorio/4º/FSIV/task-4/build/CMakeFiles/task4.dir
+/home/gecoga98/Escritorio/4º/FSIV/task-4/build/CMakeFiles/edit_cache.dir
