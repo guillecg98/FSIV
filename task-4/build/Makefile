@@ -123,32 +123,32 @@ task4/fast:
 	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/build
 .PHONY : task4/fast
 
-main.o: main.cpp.o
+calibrate_3d.o: calibrate_3d.cpp.o
 
-.PHONY : main.o
+.PHONY : calibrate_3d.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/main.cpp.o
-.PHONY : main.cpp.o
+calibrate_3d.cpp.o:
+	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.o
+.PHONY : calibrate_3d.cpp.o
 
-main.i: main.cpp.i
+calibrate_3d.i: calibrate_3d.cpp.i
 
-.PHONY : main.i
+.PHONY : calibrate_3d.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/main.cpp.i
-.PHONY : main.cpp.i
+calibrate_3d.cpp.i:
+	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.i
+.PHONY : calibrate_3d.cpp.i
 
-main.s: main.cpp.s
+calibrate_3d.s: calibrate_3d.cpp.s
 
-.PHONY : main.s
+.PHONY : calibrate_3d.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/main.cpp.s
-.PHONY : main.cpp.s
+calibrate_3d.cpp.s:
+	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.s
+.PHONY : calibrate_3d.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... task4"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... calibrate_3d.o"
+	@echo "... calibrate_3d.i"
+	@echo "... calibrate_3d.s"
 .PHONY : help
 
 

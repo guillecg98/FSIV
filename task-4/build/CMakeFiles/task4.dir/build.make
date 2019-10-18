@@ -57,38 +57,38 @@ include CMakeFiles/task4.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/task4.dir/flags.make
 
-CMakeFiles/task4.dir/main.cpp.o: CMakeFiles/task4.dir/flags.make
-CMakeFiles/task4.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/task-4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task4.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/task4.dir/main.cpp.o -c /home/gecoga98/Escritorio/4º/FSIV/task-4/main.cpp
+CMakeFiles/task4.dir/calibrate_3d.cpp.o: CMakeFiles/task4.dir/flags.make
+CMakeFiles/task4.dir/calibrate_3d.cpp.o: ../calibrate_3d.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/task-4/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/task4.dir/calibrate_3d.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/task4.dir/calibrate_3d.cpp.o -c /home/gecoga98/Escritorio/4º/FSIV/task-4/calibrate_3d.cpp
 
-CMakeFiles/task4.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task4.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Escritorio/4º/FSIV/task-4/main.cpp > CMakeFiles/task4.dir/main.cpp.i
+CMakeFiles/task4.dir/calibrate_3d.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/task4.dir/calibrate_3d.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Escritorio/4º/FSIV/task-4/calibrate_3d.cpp > CMakeFiles/task4.dir/calibrate_3d.cpp.i
 
-CMakeFiles/task4.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task4.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Escritorio/4º/FSIV/task-4/main.cpp -o CMakeFiles/task4.dir/main.cpp.s
+CMakeFiles/task4.dir/calibrate_3d.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/task4.dir/calibrate_3d.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Escritorio/4º/FSIV/task-4/calibrate_3d.cpp -o CMakeFiles/task4.dir/calibrate_3d.cpp.s
 
-CMakeFiles/task4.dir/main.cpp.o.requires:
+CMakeFiles/task4.dir/calibrate_3d.cpp.o.requires:
 
-.PHONY : CMakeFiles/task4.dir/main.cpp.o.requires
+.PHONY : CMakeFiles/task4.dir/calibrate_3d.cpp.o.requires
 
-CMakeFiles/task4.dir/main.cpp.o.provides: CMakeFiles/task4.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/task4.dir/main.cpp.o.provides
+CMakeFiles/task4.dir/calibrate_3d.cpp.o.provides: CMakeFiles/task4.dir/calibrate_3d.cpp.o.requires
+	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.o.provides.build
+.PHONY : CMakeFiles/task4.dir/calibrate_3d.cpp.o.provides
 
-CMakeFiles/task4.dir/main.cpp.o.provides.build: CMakeFiles/task4.dir/main.cpp.o
+CMakeFiles/task4.dir/calibrate_3d.cpp.o.provides.build: CMakeFiles/task4.dir/calibrate_3d.cpp.o
 
 
 # Object files for target task4
 task4_OBJECTS = \
-"CMakeFiles/task4.dir/main.cpp.o"
+"CMakeFiles/task4.dir/calibrate_3d.cpp.o"
 
 # External object files for target task4
 task4_EXTERNAL_OBJECTS =
 
-task4: CMakeFiles/task4.dir/main.cpp.o
+task4: CMakeFiles/task4.dir/calibrate_3d.cpp.o
 task4: CMakeFiles/task4.dir/build.make
 task4: /usr/lib/x86_64-linux-gnu/libopencv_shape.so.3.2.0
 task4: /usr/lib/x86_64-linux-gnu/libopencv_stitching.so.3.2.0
@@ -140,7 +140,7 @@ CMakeFiles/task4.dir/build: task4
 
 .PHONY : CMakeFiles/task4.dir/build
 
-CMakeFiles/task4.dir/requires: CMakeFiles/task4.dir/main.cpp.o.requires
+CMakeFiles/task4.dir/requires: CMakeFiles/task4.dir/calibrate_3d.cpp.o.requires
 
 .PHONY : CMakeFiles/task4.dir/requires
 

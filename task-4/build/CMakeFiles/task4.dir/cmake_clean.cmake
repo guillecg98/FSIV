@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/task4.dir/main.cpp.o"
+  "CMakeFiles/task4.dir/calibrate_3d.cpp.o"
   "task4.pdb"
   "task4"
 )
