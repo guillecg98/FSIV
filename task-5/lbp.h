@@ -17,6 +17,9 @@ using namespace std;
 //! \param lbp [out] Output matrix. Memory is allocated inside the function
 void fsiv_lbp(const cv::Mat & imagem, cv::Mat & lbp);
 
+cv::Mat get_sub_image(const cv::Mat &image, int i, int j);
+int get_lbp_value(cv::Mat &subImage,int value);
+
 //! Displays a LBP image
 //! \param lbpmat [in] LBP matrix
 //! \param winname [in] Window name (to be displayed in)
