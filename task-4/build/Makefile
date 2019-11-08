@@ -111,44 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named task4
+# Target rules for targets named augReal
 
 # Build rule for target.
-task4: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 task4
-.PHONY : task4
+augReal: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 augReal
+.PHONY : augReal
 
 # fast build rule for target.
-task4/fast:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/build
-.PHONY : task4/fast
+augReal/fast:
+	$(MAKE) -f CMakeFiles/augReal.dir/build.make CMakeFiles/augReal.dir/build
+.PHONY : augReal/fast
 
-calibrate_3d.o: calibrate_3d.cpp.o
+main.o: main.cpp.o
 
-.PHONY : calibrate_3d.o
+.PHONY : main.o
 
 # target to build an object file
-calibrate_3d.cpp.o:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.o
-.PHONY : calibrate_3d.cpp.o
+main.cpp.o:
+	$(MAKE) -f CMakeFiles/augReal.dir/build.make CMakeFiles/augReal.dir/main.cpp.o
+.PHONY : main.cpp.o
 
-calibrate_3d.i: calibrate_3d.cpp.i
+main.i: main.cpp.i
 
-.PHONY : calibrate_3d.i
+.PHONY : main.i
 
 # target to preprocess a source file
-calibrate_3d.cpp.i:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.i
-.PHONY : calibrate_3d.cpp.i
+main.cpp.i:
+	$(MAKE) -f CMakeFiles/augReal.dir/build.make CMakeFiles/augReal.dir/main.cpp.i
+.PHONY : main.cpp.i
 
-calibrate_3d.s: calibrate_3d.cpp.s
+main.s: main.cpp.s
 
-.PHONY : calibrate_3d.s
+.PHONY : main.s
 
 # target to generate assembly for a file
-calibrate_3d.cpp.s:
-	$(MAKE) -f CMakeFiles/task4.dir/build.make CMakeFiles/task4.dir/calibrate_3d.cpp.s
-.PHONY : calibrate_3d.cpp.s
+main.cpp.s:
+	$(MAKE) -f CMakeFiles/augReal.dir/build.make CMakeFiles/augReal.dir/main.cpp.s
+.PHONY : main.cpp.s
 
 # Help Target
 help:
@@ -157,11 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... task4"
+	@echo "... augReal"
 	@echo "... edit_cache"
-	@echo "... calibrate_3d.o"
-	@echo "... calibrate_3d.i"
-	@echo "... calibrate_3d.s"
+	@echo "... main.o"
+	@echo "... main.i"
+	@echo "... main.s"
 .PHONY : help
 
 

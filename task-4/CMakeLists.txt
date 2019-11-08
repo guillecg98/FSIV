@@ -14,4 +14,4 @@ ENDIF()
 
 LINK_LIBRARIES(${OpenCV_LIBS} ${XRAND})
 
-add_executable(task4 calibrate_3d.cpp)
+add_executable(augReal main.cpp)
