@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/gecoga98/Escritorio/4º/FSIV/task-5
+CMAKE_SOURCE_DIR = /home/gecoga98/Desktop/4º/FSIV/task-5
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/gecoga98/Escritorio/4º/FSIV/task-5/build
+CMAKE_BINARY_DIR = /home/gecoga98/Desktop/4º/FSIV/task-5/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/lbpdesc.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/lbpdesc.dir/flags.make
 
 CMakeFiles/lbpdesc.dir/test_lbp.cpp.o: CMakeFiles/lbpdesc.dir/flags.make
 CMakeFiles/lbpdesc.dir/test_lbp.cpp.o: ../test_lbp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lbpdesc.dir/test_lbp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lbpdesc.dir/test_lbp.cpp.o -c /home/gecoga98/Escritorio/4º/FSIV/task-5/test_lbp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/lbpdesc.dir/test_lbp.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lbpdesc.dir/test_lbp.cpp.o -c /home/gecoga98/Desktop/4º/FSIV/task-5/test_lbp.cpp
 
 CMakeFiles/lbpdesc.dir/test_lbp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lbpdesc.dir/test_lbp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Escritorio/4º/FSIV/task-5/test_lbp.cpp > CMakeFiles/lbpdesc.dir/test_lbp.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Desktop/4º/FSIV/task-5/test_lbp.cpp > CMakeFiles/lbpdesc.dir/test_lbp.cpp.i
 
 CMakeFiles/lbpdesc.dir/test_lbp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lbpdesc.dir/test_lbp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Escritorio/4º/FSIV/task-5/test_lbp.cpp -o CMakeFiles/lbpdesc.dir/test_lbp.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Desktop/4º/FSIV/task-5/test_lbp.cpp -o CMakeFiles/lbpdesc.dir/test_lbp.cpp.s
 
 CMakeFiles/lbpdesc.dir/test_lbp.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/lbpdesc.dir/test_lbp.cpp.o.provides.build: CMakeFiles/lbpdesc.dir/tes
 
 CMakeFiles/lbpdesc.dir/lbp.cpp.o: CMakeFiles/lbpdesc.dir/flags.make
 CMakeFiles/lbpdesc.dir/lbp.cpp.o: ../lbp.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lbpdesc.dir/lbp.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lbpdesc.dir/lbp.cpp.o -c /home/gecoga98/Escritorio/4º/FSIV/task-5/lbp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/lbpdesc.dir/lbp.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/lbpdesc.dir/lbp.cpp.o -c /home/gecoga98/Desktop/4º/FSIV/task-5/lbp.cpp
 
 CMakeFiles/lbpdesc.dir/lbp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/lbpdesc.dir/lbp.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Escritorio/4º/FSIV/task-5/lbp.cpp > CMakeFiles/lbpdesc.dir/lbp.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/gecoga98/Desktop/4º/FSIV/task-5/lbp.cpp > CMakeFiles/lbpdesc.dir/lbp.cpp.i
 
 CMakeFiles/lbpdesc.dir/lbp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/lbpdesc.dir/lbp.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Escritorio/4º/FSIV/task-5/lbp.cpp -o CMakeFiles/lbpdesc.dir/lbp.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/gecoga98/Desktop/4º/FSIV/task-5/lbp.cpp -o CMakeFiles/lbpdesc.dir/lbp.cpp.s
 
 CMakeFiles/lbpdesc.dir/lbp.cpp.o.requires:
 
@@ -134,7 +134,7 @@ lbpdesc: /usr/local/lib/libopencv_imgcodecs.so.3.4.7
 lbpdesc: /usr/local/lib/libopencv_imgproc.so.3.4.7
 lbpdesc: /usr/local/lib/libopencv_core.so.3.4.7
 lbpdesc: CMakeFiles/lbpdesc.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable lbpdesc"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable lbpdesc"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/lbpdesc.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -152,6 +152,6 @@ CMakeFiles/lbpdesc.dir/clean:
 .PHONY : CMakeFiles/lbpdesc.dir/clean
 
 CMakeFiles/lbpdesc.dir/depend:
-	cd /home/gecoga98/Escritorio/4º/FSIV/task-5/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gecoga98/Escritorio/4º/FSIV/task-5 /home/gecoga98/Escritorio/4º/FSIV/task-5 /home/gecoga98/Escritorio/4º/FSIV/task-5/build /home/gecoga98/Escritorio/4º/FSIV/task-5/build /home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/gecoga98/Desktop/4º/FSIV/task-5/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/gecoga98/Desktop/4º/FSIV/task-5 /home/gecoga98/Desktop/4º/FSIV/task-5 /home/gecoga98/Desktop/4º/FSIV/task-5/build /home/gecoga98/Desktop/4º/FSIV/task-5/build /home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/lbpdesc.dir/depend
 

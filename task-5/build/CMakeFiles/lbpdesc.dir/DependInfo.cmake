@@ -4,8 +4,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gecoga98/Escritorio/4º/FSIV/task-5/lbp.cpp" "/home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/lbp.cpp.o"
-  "/home/gecoga98/Escritorio/4º/FSIV/task-5/test_lbp.cpp" "/home/gecoga98/Escritorio/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/test_lbp.cpp.o"
+  "/home/gecoga98/Desktop/4º/FSIV/task-5/lbp.cpp" "/home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/lbp.cpp.o"
+  "/home/gecoga98/Desktop/4º/FSIV/task-5/test_lbp.cpp" "/home/gecoga98/Desktop/4º/FSIV/task-5/build/CMakeFiles/lbpdesc.dir/test_lbp.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

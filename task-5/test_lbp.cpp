@@ -33,7 +33,6 @@ int main(int argc, char * argv[])
    /// Load the image
    // TODO
    cv::Mat image = cv::imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);
-
    /// Compute LBP matrix
    // TODO
    cv::Mat lbpmat;
