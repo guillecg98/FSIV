@@ -1,0 +1,4 @@
+/home/gecoga98/Desktop/4º/FSIV/bits_samples/build/CMakeFiles/rebuild_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/bits_samples/build/CMakeFiles/edit_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/bits_samples/build/CMakeFiles/bits.dir
+/home/gecoga98/Desktop/4º/FSIV/bits_samples/build/CMakeFiles/parsing.dir
