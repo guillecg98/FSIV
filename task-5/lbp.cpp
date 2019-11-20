@@ -49,10 +49,11 @@ unsigned char get_lbp_value(cv::Mat subImage, unsigned char value){
 }
 
 void fsiv_lbp_hist(const cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
-    std::vector<cv::Mat> images = { lbp };
-    std::vector<int> channels = { 0 }, sizes = { 256 };
-    std::vector<float> range = { 0, (float)256 };
-    cv::calcHist(images, channels, cv::Mat(), lbp_hist, sizes, range);
+    std::vector<int> histSize = { 256 };
+    std::vector<float> ranges = { 0, (float)256 };
+    std::vector<cv::Mat> lbpVector {lbp};
+    std::vector<int> channels = { 0 };
+    cv::calcHist(lbpVector, channels, cv::Mat(), lbp_hist, histSize, ranges);
     lbp_hist = lbp_hist.mul(1.0 / (lbp.cols * lbp.rows));
 }
 
@@ -65,16 +66,15 @@ void fsiv_lbp_disp(const cv::Mat & lbpmat, const std::string & winname){
 }
 
 float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
-    float error = 0.0;
-    float xi, yi;
-
+    float error = 0;
+    float x, y;
     for (int i = 0; i < h1.rows; i++) {
-        xi = *h1.ptr<float>(i);
-        yi = *h2.ptr<float>(i);
-        if (abs(xi + yi) > 0.00001) {
-            error += (pow(xi - yi, 2) / (xi + yi));
+        x = *h1.ptr<float>(i);
+        y = *h2.ptr<float>(i);
+        if (abs(x + y) > 0) {
+            error += (pow(x - y, 2) / (x + y));
         }
     }
-    error /= 2;
+    error = error * 0.5;
     return error;
 }
