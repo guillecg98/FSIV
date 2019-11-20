@@ -75,6 +75,6 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
             error += (pow(xi - yi, 2) / (xi + yi));
         }
     }
-    error *= 0.5;
+    error /= 2;
     return error;
 }
