@@ -15,10 +15,10 @@ using namespace std;
 //! Computes a LBP matrix
 //! \param imagem [in] Input image (gray scale)
 //! \param lbp [out] Output matrix. Memory is allocated inside the function
-void fsiv_lbp(const cv::Mat & imagem, cv::Mat & lbp);
+void fsiv_lbp(cv::Mat imagem, cv::Mat & lbp);
 
-cv::Mat get_sub_image(cv::Mat &image, int i, int j);
-unsigned char get_lbp_value(cv::Mat &subImage,unsigned char value);
+cv::Mat get_sub_image(cv::Mat img, int i, int j);
+unsigned char get_lbp_value(cv::Mat subImage,unsigned char value);
 
 //! Displays a LBP image
 //! \param lbpmat [in] LBP matrix
