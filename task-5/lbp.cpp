@@ -33,19 +33,23 @@ cv::Mat get_sub_image(cv::Mat img, int i, int j){
 }
 
 unsigned char get_lbp_value(cv::Mat subImage, unsigned char value){
-  unsigned char binary_number = 1;
-    //filling the sumImage with
-    for(int x = 0; x < subImage.rows; x++){
-        uchar *ptr = subImage.ptr<uchar>(x);
-        for(int y = 0; y < subImage.cols; y++){
-          for(int z = 0; z < 8; z++){
-            if( x != 1 && y != 1 ){
-              binary_number = binary_number  | ((ptr[y] >= value) << z);
-            }
-          }
-      }
-    }
-    return binary_number;
+  unsigned char binary_number = 0;
+  //filling the sumImage with
+  int x = 0;
+  uchar *ptr1 = subImage.ptr<uchar>(x);
+  uchar *ptr2 = subImage.ptr<uchar>(x+1);
+  uchar *ptr3 = subImage.ptr<uchar>(x+2);
+
+  binary_number = binary_number  | ((ptr1[x] >= value) << 0);
+  binary_number = binary_number  | ((ptr1[x+1] >= value) << 1);
+  binary_number = binary_number  | ((ptr1[x+2] >= value) << 2);
+  binary_number = binary_number  | ((ptr2[x+2] >= value) << 3);
+  binary_number = binary_number  | ((ptr3[x+2] >= value) << 4);
+  binary_number = binary_number  | ((ptr3[x+1] >= value) << 5);
+  binary_number = binary_number  | ((ptr3[x] >= value) << 6);
+  binary_number = binary_number  | ((ptr2[x] >= value) << 7);
+
+  return binary_number;
 }
 
 void fsiv_lbp_hist(const cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
