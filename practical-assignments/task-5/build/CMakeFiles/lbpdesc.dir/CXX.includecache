@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/gecoga98/Desktop/4º/FSIV/task-5/lbp.cpp
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-5/lbp.cpp
 lbp.h
-/home/gecoga98/Desktop/4º/FSIV/task-5/lbp.h
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-5/lbp.h
 vector
 -
 
-/home/gecoga98/Desktop/4º/FSIV/task-5/lbp.h
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-5/lbp.h
 opencv2/core.hpp
 -
 opencv2/highgui.hpp
@@ -24,7 +24,7 @@ iostream
 vector
 -
 
-/home/gecoga98/Desktop/4º/FSIV/task-5/test_lbp.cpp
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-5/test_lbp.cpp
 iostream
 -
 sstream
@@ -38,7 +38,7 @@ opencv2/core.hpp
 opencv2/highgui.hpp
 -
 lbp.h
-/home/gecoga98/Desktop/4º/FSIV/task-5/lbp.h
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-5/lbp.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
