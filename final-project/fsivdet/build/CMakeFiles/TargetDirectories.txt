@@ -1,0 +1,3 @@
+/home/gecoga98/Desktop/4º/FSIV/practicas/final-project/fsivdet/build/CMakeFiles/rebuild_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/final-project/fsivdet/build/CMakeFiles/traintest.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/final-project/fsivdet/build/CMakeFiles/edit_cache.dir
