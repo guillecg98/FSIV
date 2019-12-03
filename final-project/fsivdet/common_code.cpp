@@ -15,19 +15,19 @@
 
 int compute_lbp_from_list(const std::vector<std::string> & lfiles, cv::Mat & train_lbp, const int * ncells, const bool normalize, const bool asrows, const bool withmirror)
 {
-	
-	 	 
-  for (int fix =0; fix < lfiles.size(); fix++)
-  {
-		 
-	  auto imagePath = lfiles[fix].c_str();
 
-    // TODO: compute LBP descriptor for current image and add to output matrix
-    // ...
-	}
-	
-	return 0;
 
+    for (int fix =0; fix < lfiles.size(); fix++)
+    {
+        auto imagePath = lfiles[fix].c_str();
+        // TODO: compute LBP descriptor for current image and add to output matrix
+        cv::Mat lbp;
+        cv::cvtColor(train_lbp,train_lbp,CV_BGR2GRAY);
+        fsiv_lbp(train_lbp,lbp);
+
+        // ...
+    }
+    return 0;
 }
 
 int load_filenames_from_txt(const std::string &filepath, std::vector<std::string> & lfiles)
@@ -42,7 +42,7 @@ int load_filenames_from_txt(const std::string &filepath, std::vector<std::string
        while((in) && (retCode==0) )
        {
            std::string sample;
-           
+
            in >> sample;
            if (!in)
            {
@@ -56,8 +56,8 @@ int load_filenames_from_txt(const std::string &filepath, std::vector<std::string
            }
        }
    }
-   return retCode;    
-      
+   return retCode;
+
 }
 
 
