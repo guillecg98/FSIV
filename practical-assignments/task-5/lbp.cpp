@@ -71,15 +71,6 @@ void fsiv_lbp_disp(const cv::Mat & lbpmat, const std::string & winname){
 }
 
 float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
-    float error = 0;
-    float x, y;
-    for (int i = 0; i < h1.rows; i++) {
-        x = *h1.ptr<float>(i);
-        y = *h2.ptr<float>(i);
-        if (abs(x + y) > 0) {
-            error += (pow(x - y, 2) / (x + y));
-        }
-    }
-    error = error * 0.5;
+    float error = cv::compareHist(h1,h2,cv::HISTCMP_CHISQR);
     return error;
 }
