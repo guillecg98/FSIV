@@ -41,14 +41,14 @@ unsigned char get_lbp_value(cv::Mat subImage, unsigned char value){
   uchar *ptr2 = subImage.ptr<uchar>(x+1);
   uchar *ptr3 = subImage.ptr<uchar>(x+2);
 
-  binary_number = binary_number  | ((ptr1[x] >= value) << 1);
-  binary_number = binary_number  | ((ptr1[x+1] >= value) << 2);
-  binary_number = binary_number  | ((ptr1[x+2] >= value) << 3);
-  binary_number = binary_number  | ((ptr2[x+2] >= value) << 4);
-  binary_number = binary_number  | ((ptr3[x+2] >= value) << 5);
-  binary_number = binary_number  | ((ptr3[x+1] >= value) << 6);
-  binary_number = binary_number  | ((ptr3[x] >= value) << 7);
-  binary_number = binary_number  | ((ptr2[x] >= value) << 8);
+  binary_number |= ((ptr1[x] >= value) << 7);
+  binary_number |= ((ptr1[x+1] >= value) << 6);
+  binary_number |= ((ptr1[x+2] >= value) << 5);
+  binary_number |= ((ptr2[x+2] >= value) << 4);
+  binary_number |= ((ptr3[x+2] >= value) << 3);
+  binary_number |= ((ptr3[x+1] >= value) << 2);
+  binary_number |= ((ptr3[x] >= value) << 1);
+  binary_number |= ((ptr2[x] >= value) << 0);
 
   return binary_number;
 }
