@@ -29,7 +29,7 @@ void fsiv_lbp_disp(const cv::Mat & lbpmat, const std::string & winname);
 //! \param lbp [in] Input LBP matrix
 //! \param lbp_hist [out] Output histogram. Memory is allocated inside the function
 //! \param [in] Normalize histogram?
-void fsiv_lbp_hist(const cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize=true);
+void fsiv_lbp_hist(cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize=true);
 
 //! Computes a LBP descriptor (concatenation of cells)
 //! \param ncells [in] [rows x cols] E.g. {6,4}

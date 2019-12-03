@@ -53,13 +53,26 @@ unsigned char get_lbp_value(cv::Mat subImage, unsigned char value){
   return binary_number;
 }
 
-void fsiv_lbp_hist(const cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
-    std::vector<int> histSize = { 256 };
+void fsiv_lbp_hist(cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
+    /*std::vector<int> histSize = { 256 };
     std::vector<float> ranges = { 0, (float)256 };
     std::vector<cv::Mat> lbpVector {lbp};
     std::vector<int> channels = { 0 };
     cv::calcHist(lbpVector, channels, cv::Mat(), lbp_hist, histSize, ranges);
-    lbp_hist = lbp_hist.mul(1.0 / (lbp.cols * lbp.rows));
+    lbp_hist = lbp_hist.mul(1.0 / (lbp.cols * lbp.rows));*/
+    cv::Mat aux(1,256,CV_32F, cv::Scalar::all(0) );
+    aux.copyTo(lbp_hist);
+    for(int x = 0; x < lbp.rows; x++){
+      uchar *ptr = lbp.ptr<uchar>(x);
+      float *ptr_hist = lbp_hist.ptr<float>(1);
+      for(int y = 0; y < lbp.cols; y++){
+        for(int i = 0; i < 256; i++){
+          if(ptr[y] == i){
+            ptr_hist[i] += 1;
+          }
+        }
+      }
+    }
 }
 
 void fsiv_lbp_desc(const cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize, bool asrows){
