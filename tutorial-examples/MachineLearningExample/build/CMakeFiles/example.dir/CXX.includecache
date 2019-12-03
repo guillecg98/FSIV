@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/example.cpp
+/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/example.cpp
 iostream
 -
 opencv2/core.hpp
@@ -14,7 +14,7 @@ opencv2/core.hpp
 opencv2/imgproc.hpp
 -
 opencv2/imgcodecs.hpp
-/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/opencv2/imgcodecs.hpp
+/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/opencv2/imgcodecs.hpp
 opencv2/highgui.hpp
 -
 opencv2/ml.hpp

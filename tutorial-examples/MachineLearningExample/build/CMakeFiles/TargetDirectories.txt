@@ -1,3 +1,3 @@
-/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/build/CMakeFiles/rebuild_cache.dir
-/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/build/CMakeFiles/example.dir
-/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/build/CMakeFiles/edit_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/build/CMakeFiles/rebuild_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/build/CMakeFiles/example.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/build/CMakeFiles/edit_cache.dir

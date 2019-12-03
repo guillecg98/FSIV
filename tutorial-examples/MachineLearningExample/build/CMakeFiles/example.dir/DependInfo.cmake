@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/example.cpp" "/home/gecoga98/Desktop/4º/FSIV/MachineLearningExample/build/CMakeFiles/example.dir/example.cpp.o"
+  "/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/example.cpp" "/home/gecoga98/Desktop/4º/FSIV/practicas/tutorial-examples/MachineLearningExample/build/CMakeFiles/example.dir/example.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
