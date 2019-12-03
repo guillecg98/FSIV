@@ -10,6 +10,7 @@ using namespace std;
 void fsiv_lbp(cv::Mat imagem, cv::Mat & lbp){
   cv::Mat img;
   imagem.copyTo(img);
+  imagem.copyTo(lbp);
   for(int x = 1; x < img.rows - 1; x++){
     uchar *ptrImage = img.ptr<uchar>(x);
     uchar *ptrLbp = lbp.ptr<uchar>(x);

@@ -39,7 +39,6 @@ int main(int argc, char * argv[])
    /// Compute LBP matrix
    // TODO
    cv::Mat lbpmat,lbpmat2;
-   image.copyTo(lbpmat);
    fsiv_lbp(image, lbpmat);
 
 	/// Display LBP image
