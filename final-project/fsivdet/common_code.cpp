@@ -15,20 +15,29 @@
 
 int compute_lbp_from_list(const std::vector<std::string> & lfiles, cv::Mat & train_lbp, const int * ncells, const bool normalize, const bool asrows, const bool withmirror)
 {
+    //For the first case to concatenate
+    auto imagePath = lfiles[0].c_str();
+    cv::Mat inputImage = cv::imread(imagePath,CV_LOAD_IMAGE_GRAYSCALE);
+    cv::Mat lbpmat,lbp_desc;
+    fsiv_lbp(inputImage,lbpmat);
+    fsiv_lbp_hist(lbpmat,lbp_desc);
+    //fsiv_lbp_desc(inputImage,lbp_desc,ncells,normalize,asrows);
+    lbp_desc.copyTo(train_lbp);
 
-
-    for (int fix =0; fix < lfiles.size(); fix++)
+    for (int fix =1; fix < lfiles.size(); fix++)
     {
         auto imagePath = lfiles[fix].c_str();
         // TODO: compute LBP descriptor for current image and add to output matrix
-        cv::Mat grayScaleImage = cv::imread(imagePath,CV_LOAD_IMAGE_GRAYSCALE);
-        cv::Mat lbp,histogram;
-        fsiv_lbp(grayScaleImage,lbp);
-        fsiv_lbp_hist(lbp,histogram);
-
-        // ...
+        cv::Mat inputImage = cv::imread(imagePath,CV_LOAD_IMAGE_GRAYSCALE);
+        fsiv_lbp(inputImage,lbpmat);
+        fsiv_lbp_hist(lbpmat,lbp_desc);
+        //fsiv_lbp_desc(inputImage,lbp_desc,ncells,normalize,asrows);
+        cv::hconcat(train_lbp,lbp_desc,train_lbp);
+        //...
     }
-    return 0;
+    cv::transpose(train_lbp,train_lbp);
+
+    return train_lbp.rows;
 }
 
 int load_filenames_from_txt(const std::string &filepath, std::vector<std::string> & lfiles)

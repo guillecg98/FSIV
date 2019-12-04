@@ -103,6 +103,15 @@ main(int argc, char * argv[])
 	 cv::Mat train_lbp_pos, train_lbp_neg;
 
 	/// Training a new model?
+
+	// TODO: create and configure your classifier
+	cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
+    svm->setType(SVM::C_SVC);
+    svm->setC(0.1);
+    svm->setKernel(SVM::LINEAR);
+    svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 100, 1e-6));
+	// ...
+
    string modelname = parser.get<std::string>("model");
    if (!notraining)
    {
@@ -128,34 +137,23 @@ main(int argc, char * argv[])
 	   cv::Mat train_lbp;
 	   cv::vconcat(train_lbp_pos, train_lbp_neg, train_lbp);
 
-	   // TODO: create and configure your classifier
-		Ptr<SVM> svm = SVM::create();
-    	svm->setType(SVM::C_SVC);
-    	svm->setC(0.1);
-    	svm->setKernel(SVM::LINEAR);
-    	svm->setTermCriteria(TermCriteria(TermCriteria::MAX_ITER, (int)1e7, 1e-6));
-	   // ...
-
 	   CV_Assert(train_lbp.type()==CV_32F);
 
-	   std::cout << "Starting training ...";
-
+	   	std::cout << "Starting training ...";
 	   // TODO: Start training
-    	svm->train(trainData, ROW_SAMPLE, labels);
+    	svm->train(train_lbp, ROW_SAMPLE, labelsMat);
 	   // ...
-
-
 	   std::cout << "Trained" << std::endl;
-
 	   // TODO: Save model to disk
-	   svm->save(modelname);
+		svm->save(modelname);
   		// ...
+		std::cout<<"Saved\n";
 	}
 	else
 	{
 		// TODO: load existing model
+		svm->load(modelname);
 		// ...
-
 		std::cout << "+ Model loaded from: " << modelname << std::endl;
 	}
 
@@ -169,6 +167,8 @@ main(int argc, char * argv[])
    cv::Mat predictions_pos, predictions_neg, predictions_pos_raw, predictions_neg_raw;
 
    // TODO: run the trained model on the LBP descriptors, positive and negative samples
+    svm->predict(test_lbp_pos, predictions_pos);
+    svm->predict(test_lbp_neg, predictions_neg);
    // ...
 
 	std::cout << "Test done!" << std::endl;
