@@ -43,7 +43,7 @@ int main(int argc, char * argv[])
 
 	/// Display LBP image
    // TODO
-   int ncells [] = {6,4};
+   int ncells [] = {9,9};
    fsiv_lbp_desc(image,lbpmat,ncells,true,true);
    fsiv_lbp_disp(image, "LBP image");
 
