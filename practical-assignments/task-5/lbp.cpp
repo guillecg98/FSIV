@@ -7,7 +7,7 @@
 using namespace std;
 
 
-void fsiv_lbp(cv::Mat imagem, cv::Mat & lbp){
+void fsiv_lbp(const cv::Mat & imagem, cv::Mat & lbp){
   cv::Mat img;
   imagem.copyTo(img);
   imagem.copyTo(lbp);
@@ -58,26 +58,50 @@ void fsiv_lbp_hist(cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
     const float range[] = { 0, 256 };
     const float* histRange = { range };
     cv::calcHist(&lbp, 1, 0, cv::Mat(), lbp_hist, 1, &histSize, &histRange,true,false);
-    cv::normalize(lbp_hist,lbp_hist,1,0,cv::NORM_L1,-1,cv::Mat());
+    if(normalize){
+      cv::normalize(lbp_hist,lbp_hist,1,0,cv::NORM_L1,-1,cv::Mat());
+    }
 }
 
 void fsiv_lbp_desc(cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize, bool asrows){
+  cv::Mat lbp_aux,lbp_aux_hist;
+  cv::Mat desc(256,1,CV_32F);
+  desc.copyTo(lbp_desc);
   std::vector<cv::Mat> grid;
-  //if(image.rows % ncells[0] == 0 && image.cols % ncells[1] == 0){
-    for(int y = 0; y < image.cols - ncells[1]; y += image.cols / ncells[1]){
-      for(int x = 0; x < image.rows - ncells[0]; x += image.rows / ncells[0]){
-        // cv::Rect grid_rect(x,y,image.rows/ncells[0],image.cols/ncells[1]);
-        // cv::rectangle(image, grid_rect, cv::Scalar(0, 255, 0), 1);
-        grid.push_back(image(cv::Rect(y,x,(image.cols/ncells[1]),(image.rows/ncells[0]))).clone());
-        cv::rectangle(image,cv::Point(y,x),cv::Point(y+(image.cols/ncells[1])-1,x+(image.rows/ncells[0])-1),cv::Scalar(0, 255, 0), 1);
-        //cv::imshow("Image", maskImage); // visualization
-        //cv::waitKey(0); // visualization
+  std::vector<cv::Mat> histograms;
+  std::vector<float> sumHistogram(256,0);
+
+  //Save each zone of the grid in a vector to compute them individually
+  for(int y = 0; y < (image.cols - ncells[1]); y += image.cols / ncells[1]){
+    for(int x = 0; x < (image.rows - ncells[0]); x += image.rows / ncells[0]){
+      grid.push_back(image(cv::Rect(y,x,(image.cols/ncells[1]),(image.rows/ncells[0]))).clone());
+      cv::rectangle(image,cv::Point(y,x),cv::Point(y+(image.cols/ncells[1])-1,x+(image.rows/ncells[0])-1),cv::Scalar(0, 255, 0), 1);
+    }
+  }
+//Computing each zone of the grid individually and saving their histograms to another vector
+ for(int i = 0; i < grid.size(); i++){
+    fsiv_lbp(grid[i],lbp_aux);
+    fsiv_lbp_hist(lbp_aux,lbp_aux_hist,false);
+    histograms.push_back(lbp_aux_hist);
+  }
+//calculating the total value of the histogram
+  for(int i = 0; i < histograms.size(); i++){
+    for(int x = 0; x < histograms[i].rows; x++){
+      float *ptr_hist = histograms[i].ptr<float>(x);
+      for(int y = 0; y < histograms[i].cols; y++){
+        sumHistogram[x] += ptr_hist[y];
       }
     }
-  // }else{
-  //   std::cerr<<"No valids cells grid\n";
-  // }
-  std::cerr<<"Tamaño del vector de bloques = "<<grid.size()<<"\n";
+  }
+//Passing histogram information to the image
+  for(int x = 0; x < lbp_desc.rows; x++){
+    float *ptr_desc = lbp_desc.ptr<float>(x);
+    for(int y = 0; y < lbp_desc.cols; y++){
+      ptr_desc[y] = sumHistogram[x];
+    }
+  }
+  //Normalizing the histogram
+  cv::normalize(lbp_desc,lbp_desc,1,0,cv::NORM_L1,-1,cv::Mat());
 }
 
 void fsiv_lbp_disp(const cv::Mat & lbpmat, const std::string & winname){

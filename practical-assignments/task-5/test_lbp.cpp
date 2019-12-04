@@ -37,38 +37,27 @@ int main(int argc, char * argv[])
    // TODO
    cv::Mat image = cv::imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);//PARSER DOES NOT WORK VERY WELL
    /// Compute LBP matrix
-   // TODO
-   cv::Mat lbpmat,lbpmat2;
-   //fsiv_lbp(image, lbpmat); ----> DESCOMENTAR CUANDO TEMRINE
+   int ncells [] = {5,6};
+   cv::Mat lbpmat;
+   fsiv_lbp(image, lbpmat);
+   fsiv_lbp_disp(lbpmat, "LBP Image");
 
-	/// Display LBP image
-   // TODO
-   int ncells [] = {9,9};
-   fsiv_lbp_desc(image,lbpmat,ncells,true,true);
-   fsiv_lbp_disp(image, "LBP image");
+   cv::Mat lbp_desc1;
+   fsiv_lbp_desc(image,lbp_desc1,ncells,true,true);
+   //fsiv_lbp_hist(lbpmat, lbp_desc1, true);
 
-   /// Save LBP image to disk
-   // TODO
-
-   // Compute the LBP histogram
-   // TODO
-   cv::Mat lbp_h1;
-   //fsiv_lbp_hist(lbpmat, lbp_h1, true);----> DESCOMENTAR CUANDO TERMINE
-   // assert(cv::sum(lbp_h1.sum) == 1.0)
-
-   /// Compute the Chi^2 distance between the input image and its mirror
-   // TODO
    if (argc == 3)
    {
-      cv::Mat imagem2 = cv::imread(argv[2],CV_LOAD_IMAGE_GRAYSCALE);
-      cv::Mat lbp_h2, lbpmat2;
-      imagem2.copyTo(lbpmat2);
-      fsiv_lbp(imagem2,lbpmat2);
-      fsiv_lbp_disp(lbpmat2,"LBP image 2");
-      fsiv_lbp_hist(lbpmat2,lbp_h2,true);
-      float dist = fsiv_chisquared_dist(lbp_h1, lbp_h2);
+      cv::Mat image2 = cv::imread(argv[2],CV_LOAD_IMAGE_GRAYSCALE);
+      cv::Mat lbpmat2;
+      fsiv_lbp(image2, lbpmat2);
+      fsiv_lbp_disp(lbpmat2, "LBP Image 2");
 
-      // Show distance
+      cv::Mat lbp_desc2;
+      fsiv_lbp_desc(image2,lbp_desc2,ncells,true,true);
+      //fsiv_lbp_hist(lbpmat2, lbp_desc2, true);
+
+      float dist = fsiv_chisquared_dist(lbp_desc1, lbp_desc2);
       std::cout<<"Dist = "<<dist<<"\n";
    }
 
