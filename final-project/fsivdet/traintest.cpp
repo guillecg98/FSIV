@@ -138,7 +138,6 @@ main(int argc, char * argv[])
 	   cv::vconcat(train_lbp_pos, train_lbp_neg, train_lbp);
 
 	   CV_Assert(train_lbp.type()==CV_32F);
-
 	   	std::cout << "Starting training ...";
 	   // TODO: Start training
     	svm->train(train_lbp, ROW_SAMPLE, labelsMat);
