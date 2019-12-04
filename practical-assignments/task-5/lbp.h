@@ -33,7 +33,7 @@ void fsiv_lbp_hist(cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize=true);
 
 //! Computes a LBP descriptor (concatenation of cells)
 //! \param ncells [in] [rows x cols] E.g. {6,4}
-void fsiv_lbp_desc(const cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize=true, bool asrows=true);
+void fsiv_lbp_desc(cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize=true, bool asrows=true);
 
 //! Computes Chi^2 distance between two distributions
 //! \param h1, h2 Row vectors with the same dimensions.

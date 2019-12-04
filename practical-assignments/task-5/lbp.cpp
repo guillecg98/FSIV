@@ -54,29 +54,26 @@ unsigned char get_lbp_value(cv::Mat subImage, unsigned char value){
 }
 
 void fsiv_lbp_hist(cv::Mat & lbp, cv::Mat & lbp_hist, bool normalize){
-    /*std::vector<int> histSize = { 256 };
-    std::vector<float> ranges = { 0, (float)256 };
-    std::vector<cv::Mat> lbpVector {lbp};
-    std::vector<int> channels = { 0 };
-    cv::calcHist(lbpVector, channels, cv::Mat(), lbp_hist, histSize, ranges);
-    lbp_hist = lbp_hist.mul(1.0 / (lbp.cols * lbp.rows));*/
-    cv::Mat aux(1,256,CV_32F, cv::Scalar::all(0) );
-    aux.copyTo(lbp_hist);
-    for(int x = 0; x < lbp.rows; x++){
-      uchar *ptr = lbp.ptr<uchar>(x);
-      float *ptr_hist = lbp_hist.ptr<float>(1);
-      for(int y = 0; y < lbp.cols; y++){
-        for(int i = 0; i < 256; i++){
-          if(ptr[y] == i){
-            ptr_hist[i] += 1;
-          }
-        }
-      }
-    }
+    int histSize = 256;
+    const float range[] = { 0, 256 };
+    const float* histRange = { range };
+    cv::calcHist(&lbp, 1, 0, cv::Mat(), lbp_hist, 1, &histSize, &histRange,true,false);
+    cv::normalize(lbp_hist,lbp_hist,1,0,cv::NORM_L1,-1,cv::Mat());
 }
 
-void fsiv_lbp_desc(const cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize, bool asrows){
-
+void fsiv_lbp_desc(cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool normalize, bool asrows){
+  //if(image.rows % ncells[0] == 0 && image.cols % ncells[1] == 0){
+    for(int y = 0; y < image.cols - ncells[1]; y += image.cols / ncells[1]){
+      for(int x = 0; x < image.rows - ncells[0]; x += image.rows / ncells[0]){
+        // cv::Rect grid_rect(x,y,image.rows/ncells[0],image.cols/ncells[1]);
+        // cv::rectangle(image, grid_rect, cv::Scalar(0, 255, 0), 1);
+        //blocks.push_back(image(cv::Rect(x,y,(image.rows/ncells[0]),(image.cols/ncells[1]))).clone());
+        cv::rectangle(image,cv::Point(y,x),cv::Point(y+(image.cols/ncells[1])-1,x+(image.rows/ncells[0])-1),cv::Scalar(0, 255, 0), 1);
+        //cv::imshow("Image", maskImage); // visualization
+        //cv::waitKey(0); // visualization
+      }
+    }
+  //}
 }
 
 void fsiv_lbp_disp(const cv::Mat & lbpmat, const std::string & winname){

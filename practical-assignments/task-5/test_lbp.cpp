@@ -39,11 +39,13 @@ int main(int argc, char * argv[])
    /// Compute LBP matrix
    // TODO
    cv::Mat lbpmat,lbpmat2;
-   fsiv_lbp(image, lbpmat);
+   //fsiv_lbp(image, lbpmat); ----> DESCOMENTAR CUANDO TEMRINE
 
 	/// Display LBP image
    // TODO
-   fsiv_lbp_disp(lbpmat, "LBP image");
+   int ncells [] = {6,4};
+   fsiv_lbp_desc(image,lbpmat,ncells,true,true);
+   fsiv_lbp_disp(image, "LBP image");
 
    /// Save LBP image to disk
    // TODO
@@ -51,7 +53,7 @@ int main(int argc, char * argv[])
    // Compute the LBP histogram
    // TODO
    cv::Mat lbp_h1;
-   fsiv_lbp_hist(lbpmat, lbp_h1, true);
+   //fsiv_lbp_hist(lbpmat, lbp_h1, true);----> DESCOMENTAR CUANDO TERMINE
    // assert(cv::sum(lbp_h1.sum) == 1.0)
 
    /// Compute the Chi^2 distance between the input image and its mirror
