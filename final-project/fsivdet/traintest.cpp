@@ -107,9 +107,9 @@ main(int argc, char * argv[])
 	// TODO: create and configure your classifier
 	cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
     svm->setType(SVM::C_SVC);
-    svm->setC(0.1);
+    svm->setC(1);
     svm->setKernel(SVM::LINEAR);
-    svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 100, 1e-6));
+    svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 	// ...
 
    string modelname = parser.get<std::string>("model");
