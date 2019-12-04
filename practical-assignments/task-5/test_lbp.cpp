@@ -37,7 +37,7 @@ int main(int argc, char * argv[])
    // TODO
    cv::Mat image = cv::imread(argv[1],CV_LOAD_IMAGE_GRAYSCALE);//PARSER DOES NOT WORK VERY WELL
    /// Compute LBP matrix
-   int ncells [] = {5,6};
+   int ncells [] = {5,5};
    cv::Mat lbpmat;
    fsiv_lbp(image, lbpmat);
    fsiv_lbp_disp(lbpmat, "LBP Image");
