@@ -21,9 +21,10 @@ int compute_lbp_from_list(const std::vector<std::string> & lfiles, cv::Mat & tra
     {
         auto imagePath = lfiles[fix].c_str();
         // TODO: compute LBP descriptor for current image and add to output matrix
-        cv::Mat lbp;
-        cv::cvtColor(train_lbp,train_lbp,CV_BGR2GRAY);
-        fsiv_lbp(train_lbp,lbp);
+        cv::Mat grayScaleImage = cv::imread(imagePath,CV_LOAD_IMAGE_GRAYSCALE);
+        cv::Mat lbp,histogram;
+        fsiv_lbp(grayScaleImage,lbp);
+        fsiv_lbp_hist(lbp,histogram);
 
         // ...
     }
