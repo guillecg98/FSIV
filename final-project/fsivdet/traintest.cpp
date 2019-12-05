@@ -22,6 +22,9 @@ const cv::String keys =
     "{@train_neg     |<none>| negative samples for training.}"
     "{@test_pos      |<none>| positive samples for testing.}"
     "{@test_neg      |<none>| negative samples for testing.}"
+	"{@C      |1.0| margin of the SVM clasiffier.}"
+	"{@grid_rows      |6| number of rows.}"
+	"{@grid_cols      |4| number of columns.}"
     "{notrain        |      | no training a model? Only testing.}"
     "{model          |model_svm.yml| filename for model.}"
     ;
@@ -39,7 +42,8 @@ main(int argc, char * argv[])
 
     setvbuf(stdout, NULL, _IONBF, 0);
 
-
+	int grid_rows,grid_cols;
+	float c;
     bool notraining = parser.has("notrain");
 
     // Load sample names
@@ -57,6 +61,9 @@ main(int argc, char * argv[])
     	filepath_neg  = parser.get<cv::String>(1);
         filepath_pos_test  = parser.get<cv::String>(2);
         filepath_neg_test  = parser.get<cv::String>(3);
+		c = parser.get<float>(4);
+		grid_rows = parser.get<int>(5);
+		grid_cols = parser.get<int>(6);
     }
 
 
@@ -99,15 +106,16 @@ main(int argc, char * argv[])
 	 std::cout << lfiles_neg.size() << " negative training samples" << std::endl;
 
 	 // Split image into cells to compute LBP full descriptor
-	 int ncells[] = {6,4}; // Rows x cols // 6x4
+	 int ncells[] = {grid_rows,grid_cols}; // Rows x cols //
 	 cv::Mat train_lbp_pos, train_lbp_neg;
 
 	/// Training a new model?
-
+	std::cerr<<"Margin of the classifier = "<<c<<"\n";
+	std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
 	// TODO: create and configure your classifier
 	cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
     svm->setType(SVM::C_SVC);
-    svm->setC(1);
+    svm->setC(c);
     svm->setKernel(SVM::LINEAR);
     svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 	// ...
@@ -119,9 +127,9 @@ main(int argc, char * argv[])
 	   std::cout << "Computing LBP descriptors for training samples... ";
 	   std::vector<float> train_labels_v;
 	   int npos = compute_lbp_from_list(lfiles_pos, train_lbp_pos, ncells, true, true);
-
+		std::cerr<<"npos = "<<npos<<"\n";
 	   int nneg = compute_lbp_from_list(lfiles_neg, train_lbp_neg, ncells, true, true);
-
+		std::cerr<<"nneg = "<<nneg<<"\n";
 	   std::cout << "done!" << std::endl;
 
 	   for (int i =0; i<npos; i++)

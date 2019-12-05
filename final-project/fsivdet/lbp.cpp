@@ -81,7 +81,7 @@ void fsiv_lbp_desc(cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool 
   for(int i = 1; i < grid.size(); i++){
     fsiv_lbp(grid[i],lbp_aux);
     fsiv_lbp_hist(lbp_aux,lbp_aux_hist,false);
-    cv::hconcat(lbp_desc,lbp_aux_hist,lbp_desc);
+    lbp_desc += lbp_aux_hist;
   }
   //Normalizing the histogram
   cv::normalize(lbp_desc,lbp_desc,1,0,cv::NORM_L1,-1,cv::Mat());
