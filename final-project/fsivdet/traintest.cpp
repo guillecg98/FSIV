@@ -48,12 +48,13 @@ main(int argc, char * argv[])
 
     // Load sample names
     std::vector<std::string> lfiles_pos, lfiles_neg, lfiles_pos_test, lfiles_neg_test;
-    cv::String filepath, filepath_neg , filepath_pos_test , filepath_neg_test;
+    cv::String filepath, filepath_neg , filepath_pos_test , filepath_neg_test,filepath_model;
 
     if (notraining)
     {
     	filepath_pos_test  = parser.get<cv::String>(0);
     	filepath_neg_test  = parser.get<cv::String>(1);
+		filepath_model = parser.get<cv::String>(2);
     }
     else
     {
@@ -106,18 +107,26 @@ main(int argc, char * argv[])
 	 std::cout << lfiles_neg.size() << " negative training samples" << std::endl;
 
 	 // Split image into cells to compute LBP full descriptor
-	 int ncells[] = {grid_rows,grid_cols}; // Rows x cols //
+	 int ncells[] = {9,3}; // Rows x cols //
 	 cv::Mat train_lbp_pos, train_lbp_neg;
 
 	/// Training a new model?
-	std::cerr<<"Margin of the classifier = "<<c<<"\n";
-	std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
+	//std::cerr<<"Margin of the classifier = "<<c<<"\n";
+	//std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
 	// TODO: create and configure your classifier
 	cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
     svm->setType(SVM::C_SVC);
-    svm->setC(c);
+    svm->setC(0.1);
     svm->setKernel(SVM::LINEAR);
     svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
+	// ...
+
+		// TODO: create and configure your classifier
+	cv::Ptr<cv::ml::SVM> svm2 = cv::ml::SVM::create();
+    svm2->setType(SVM::C_SVC);
+    svm2->setC(0.3);
+    svm2->setKernel(SVM::INTER);
+    svm2->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 	// ...
 
    string modelname = parser.get<std::string>("model");
@@ -157,7 +166,7 @@ main(int argc, char * argv[])
 	else
 	{
 		// TODO: load existing model
-		svm->load(modelname);
+		svm2 = cv::Algorithm::load<SVM>(filepath_model);
 		// ...
 		std::cout << "+ Model loaded from: " << modelname << std::endl;
 	}
@@ -171,10 +180,18 @@ main(int argc, char * argv[])
 
    cv::Mat predictions_pos, predictions_neg, predictions_pos_raw, predictions_neg_raw;
 
-   // TODO: run the trained model on the LBP descriptors, positive and negative samples
-    svm->predict(test_lbp_pos, predictions_pos);
-    svm->predict(test_lbp_neg, predictions_neg);
-   // ...
+	if(!notraining){
+		// TODO: run the trained model on the LBP descriptors, positive and negative samples
+    	svm->predict(test_lbp_pos, predictions_pos);
+    	svm->predict(test_lbp_neg, predictions_neg);
+   		// ...
+	}else{
+		// TODO: run the trained model on the LBP descriptors, positive and negative samples
+    	svm2->predict(test_lbp_pos, predictions_pos);
+    	svm2->predict(test_lbp_neg, predictions_neg);
+   		// ...
+	}
+
 
 	std::cout << "Test done!" << std::endl;
 
