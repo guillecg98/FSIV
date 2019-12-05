@@ -127,9 +127,7 @@ main(int argc, char * argv[])
 	   std::cout << "Computing LBP descriptors for training samples... ";
 	   std::vector<float> train_labels_v;
 	   int npos = compute_lbp_from_list(lfiles_pos, train_lbp_pos, ncells, true, true);
-		std::cerr<<"npos = "<<npos<<"\n";
 	   int nneg = compute_lbp_from_list(lfiles_neg, train_lbp_neg, ncells, true, true);
-		std::cerr<<"nneg = "<<nneg<<"\n";
 	   std::cout << "done!" << std::endl;
 
 	   for (int i =0; i<npos; i++)
