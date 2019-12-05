@@ -107,24 +107,24 @@ main(int argc, char * argv[])
 	 std::cout << lfiles_neg.size() << " negative training samples" << std::endl;
 
 	 // Split image into cells to compute LBP full descriptor
-	 int ncells[] = {9,3}; // Rows x cols //
+	 int ncells[] = {grid_rows,grid_cols}; // Rows x cols //
 	 cv::Mat train_lbp_pos, train_lbp_neg;
 
-	/// Training a new model?
-	//std::cerr<<"Margin of the classifier = "<<c<<"\n";
-	//std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
+	// Training a new model?
+	std::cerr<<"Margin of the classifier = "<<c<<"\n";
+	std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
 	// TODO: create and configure your classifier
 	cv::Ptr<cv::ml::SVM> svm = cv::ml::SVM::create();
     svm->setType(SVM::C_SVC);
-    svm->setC(0.1);
-    svm->setKernel(SVM::LINEAR);
+    svm->setC(c);
+    svm->setKernel(SVM::INTER);
     svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 	// ...
 
 		// TODO: create and configure your classifier
 	cv::Ptr<cv::ml::SVM> svm2 = cv::ml::SVM::create();
     svm2->setType(SVM::C_SVC);
-    svm2->setC(0.3);
+    svm2->setC(c);
     svm2->setKernel(SVM::INTER);
     svm2->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 	// ...
