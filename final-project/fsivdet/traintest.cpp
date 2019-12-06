@@ -22,9 +22,9 @@ const cv::String keys =
     "{@train_neg     |<none>| negative samples for training.}"
     "{@test_pos      |<none>| positive samples for testing.}"
     "{@test_neg      |<none>| negative samples for testing.}"
-	"{@C      |1.0| margin of the SVM clasiffier.}"
-	"{@grid_rows      |6| number of rows.}"
-	"{@grid_cols      |4| number of columns.}"
+	"{C      |1.0| margin of the SVM clasiffier.}"
+	"{grid_rows      |6| number of rows.}"
+	"{grid_cols      |4| number of columns.}"
     "{notrain        |      | no training a model? Only testing.}"
     "{model          |model_svm.yml| filename for model.}"
     ;
@@ -42,9 +42,11 @@ main(int argc, char * argv[])
 
     setvbuf(stdout, NULL, _IONBF, 0);
 
-	int grid_rows,grid_cols;
-	float c;
+	int grid_rows = parser.get<int>("grid_rows");
+	int grid_cols = parser.get<int>("grid_cols");
+	float c = parser.get<float>("C");
     bool notraining = parser.has("notrain");
+	string modelname = parser.get<std::string>("model");
 
     // Load sample names
     std::vector<std::string> lfiles_pos, lfiles_neg, lfiles_pos_test, lfiles_neg_test;
@@ -61,9 +63,6 @@ main(int argc, char * argv[])
     	filepath_neg  = parser.get<cv::String>(1);
         filepath_pos_test  = parser.get<cv::String>(2);
         filepath_neg_test  = parser.get<cv::String>(3);
-		c = parser.get<float>(4);
-		grid_rows = parser.get<int>(5);
-		grid_cols = parser.get<int>(6);
     }
 
 
@@ -71,7 +70,6 @@ main(int argc, char * argv[])
 	//If not exists a model already trained, read train datasets
     if (!notraining)
     {
-
 		retCode = load_filenames_from_txt(filepath, lfiles_pos);
 		if (retCode != 0)
 		{
@@ -110,13 +108,12 @@ main(int argc, char * argv[])
 	 cv::Mat train_lbp_pos, train_lbp_neg;
 
 	// Training a new model?
-	std::cerr<<"Margin of the classifier = "<<c<<"\n";
-	std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
 	cv::Ptr<cv::ml::SVM> svm;
 
-   string modelname = parser.get<std::string>("model");
-   if (!notraining)
-   {
+   	if (!notraining)
+   	{
+		std::cerr<<"Margin of the classifier = "<<c<<"\n";
+		std::cerr<<"GRID CONFIG = {"<<grid_rows<<"x"<<grid_cols<<"}\n";
 		// TODO: create and configure your classifier
 		svm = cv::ml::SVM::create();
     	svm->setType(SVM::C_SVC);
@@ -159,7 +156,7 @@ main(int argc, char * argv[])
 	else
 	{
 		// TODO: load existing model
-		svm ->load(modelname);
+		svm = cv::Algorithm::load<SVM>(modelname);
 		// ...
 		std::cout << "+ Model loaded from: " << modelname << std::endl;
 	}
@@ -170,8 +167,7 @@ main(int argc, char * argv[])
    std::cout << "Computing LBP on test samples..." << std::endl;
    int npos_test = compute_lbp_from_list(lfiles_pos_test, test_lbp_pos, ncells, true, true);
    int nneg_test = compute_lbp_from_list(lfiles_neg_test, test_lbp_neg, ncells, true, true);
-
-   cv::Mat predictions_pos, predictions_neg, predictions_pos_raw, predictions_neg_raw;
+   	cv::Mat predictions_pos, predictions_neg, predictions_pos_raw, predictions_neg_raw;
 
 	// TODO: run the trained model on the LBP descriptors, positive and negative samples
     svm->predict(test_lbp_pos, predictions_pos);
