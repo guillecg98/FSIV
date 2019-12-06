@@ -27,10 +27,9 @@ int compute_lbp_from_list(const std::vector<std::string> & lfiles, cv::Mat & tra
         // TODO: compute LBP descriptor for current image and add to output matrix
         cv::Mat inputImage = cv::imread(imagePath,CV_LOAD_IMAGE_GRAYSCALE);
         fsiv_lbp_desc(inputImage,lbp_desc,ncells,normalize,asrows);
-        cv::hconcat(train_lbp,lbp_desc,train_lbp);
+        cv::vconcat(train_lbp,lbp_desc,train_lbp);
         //...
     }
-    cv::transpose(train_lbp,train_lbp);
     return train_lbp.rows;
 }
 

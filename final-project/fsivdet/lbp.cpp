@@ -83,6 +83,7 @@ void fsiv_lbp_desc(cv::Mat & image, cv::Mat & lbp_desc, const int *ncells, bool 
     fsiv_lbp_hist(lbp_aux,lbp_aux_hist,false);
     cv::vconcat(lbp_desc,lbp_aux_hist,lbp_desc);
   }
+  cv::transpose(lbp_desc,lbp_desc);
   //Normalizing the histogram
   cv::normalize(lbp_desc,lbp_desc,1,0,cv::NORM_L1,-1,cv::Mat());
 }
