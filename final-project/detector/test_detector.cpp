@@ -41,7 +41,7 @@ main(int argc, char * argv[])
     }
 
     // Setting parameters.
-    int winsize[] = {128, 64};	 
+    int winsize[] = {128, 64};
     int stride = parser.get<int>("stride");
     float thr_det = parser.get<float>("thrdet");
     int nlevels = parser.get<int>("levels");
@@ -59,7 +59,7 @@ main(int argc, char * argv[])
 	 cv::Ptr<SVM> svm;
 
     //TODO: Load de classifier model.
-    
+
     std::cout << "Descriptor dimension: " << svm->getVarCount() << std::endl;
     //
 
@@ -71,7 +71,7 @@ main(int argc, char * argv[])
                      parser.get<cv::String>(0) << "'." << std::endl;
         return -1;
     }
-     
+
     //Stats variables to compute performance metrics.
     float num_imgs = 0.0;
     float t_total = 0.0;
@@ -121,17 +121,6 @@ main(int argc, char * argv[])
         std::cout << "Processing image: '" << image_file <<"'." << std::endl;
 
         //TODO: You must implement this function (the detector) in the lbp module (lbp.h/lbp.cpp).
-		  // The expected prototype is:
-        // void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores);
-        // where:
-		  // \param image [in] is the input GRAY image.
-        // \param svm [in] is the classifier.
-        // \param winsize [in] the window size.
-        // \param stride [in] is the used step for the scanning scheme.
-        // \param ncelss [in] set the grid geometry to compute the lbp descriptor.
-        // \param nlevels [in] is the maximum number of levels of the multi-resolution pyramid.
-        // \param lRs [out] List of detections bb.
-        // \param lscores [out] List of scores (one per detection in lRs)
         fsiv_detect_pyr(image, svm, winsize, stride, ncells, nlevels, factor, thr_det, lRs, lscores);
         //
 
@@ -141,7 +130,7 @@ main(int argc, char * argv[])
         std::vector<int> indices;
         indices.resize(0);
         float nmsThreshold = 0.4;
-        
+
         //TODO: you must process the detected list of bb to non-maxima-supression.
         // see: https://docs.opencv.org/3.4/d6/d0f/group__dnn.html#ga9d118d70a1659af729d01b10233213ee
 
@@ -158,7 +147,7 @@ main(int argc, char * argv[])
         // Draw annotations.
 
         for (int i = 0; i < annotated_boxes.size(); i++)
-        { 
+        {
             //TODO: draw a rectangle on image_orig with the annotated bb with green color.
             //Use 3 for thickness value.
 
