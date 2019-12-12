@@ -118,7 +118,7 @@ main(int argc, char * argv[])
 		svm = cv::ml::SVM::create();
     	svm->setType(SVM::C_SVC);
     	svm->setC(c);
-    	svm->setKernel(SVM::INTER);
+    	svm->setKernel(SVM::LINEAR);
     	svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 		// ...
 
