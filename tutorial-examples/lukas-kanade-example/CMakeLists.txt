@@ -5,4 +5,4 @@ find_package(OpenCV 3.3 REQUIRED)
 
 LINK_LIBRARIES(${OpenCV_LIBS})
 
-add_executable(test lukas-kanade.cpp)
+add_executable(lukas-example lukas-kanade.cpp)
