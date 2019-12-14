@@ -59,7 +59,8 @@ main(int argc, char * argv[])
 	 cv::Ptr<SVM> svm;
 
     //TODO: Load de classifier model.
-
+    svm = cv::Algorithm::load<SVM>(clf_model_file);
+	std::cout << "+ Model loaded from: " << clf_model_file << std::endl;
     std::cout << "Descriptor dimension: " << svm->getVarCount() << std::endl;
     //
 

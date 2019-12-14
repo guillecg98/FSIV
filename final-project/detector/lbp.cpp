@@ -98,5 +98,11 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
 }
 
 void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores){
-
+  cv::Mat input, output, lbp_desc;
+  image.copyTo(input);
+  for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
+    cv::pyrUp(input,output,cv::Size(input.cols*stride,input.rows*stride));
+    fsiv_lbp_desc(output,lbp_desc,ncells);
+    input = output;
+  }
 }
