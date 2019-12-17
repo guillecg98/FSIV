@@ -134,7 +134,7 @@ main(int argc, char * argv[])
 
         //TODO: you must process the detected list of bb to non-maxima-supression.
         // see: https://docs.opencv.org/3.4/d6/d0f/group__dnn.html#ga9d118d70a1659af729d01b10233213ee
-        cv::dnn::NMSBoxes(lRs,lscores,thr_det,nmsThreshold,indices);
+        cv::dnn::NMSBoxes(lRs,lscores,iou_th,nmsThreshold,indices);
 
         //
 
@@ -158,17 +158,15 @@ main(int argc, char * argv[])
 
         // Draw detections
         int random_colour_b = 0;
-        int random_colour_g = 0;
         int random_colour_r = 0;
         for (int i = 0; i < detections.size(); i++)
         {
             //TODO: draw a rectangle on image_orig with the detected bb with color other than green.
             //Use 3 for thickness value.
             //Use random colors to differentiate between detected windows.
-            // random_colour_b = rand()%254;
-            // random_colour_g = rand()%254;
-            // random_colour_r = rand()%254;
-            // cv::rectangle(image_orig,lRs[i],cv::Scalar(random_colour_b,random_colour_g,random_colour_r),3);
+            random_colour_b = rand()%254;
+            random_colour_r = rand()%254;
+            cv::rectangle(image_orig,lRs[i],cv::Scalar(random_colour_b,0,random_colour_r),3);
 				//
         }
 

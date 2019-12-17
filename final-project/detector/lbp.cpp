@@ -115,7 +115,7 @@ void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int 
         cv::Mat roiImage = output(roi);
         fsiv_lbp_desc(roiImage,lbp_desc,ncells);
         //resize roi to original_image
-        //roi = cv::Rect(x/factor,y/factor,winsize[1]/factor,winsize[0]/factor);
+        roi = cv::Rect((i*x)/factor,(i*y)/factor,(i*winsize[1])/factor,(i*winsize[0])/factor);
         if(svm->predict(lbp_desc) == 1){
           lRs.push_back(roi);
           lscores.push_back(svm->predict(lbp_desc));
