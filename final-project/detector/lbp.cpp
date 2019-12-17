@@ -3,6 +3,7 @@
 
 #include "lbp.h"
 #include <vector>
+#include <unistd.h>
 
 using namespace std;
 
@@ -98,22 +99,34 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
 }
 
 void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores){
-  // cv::Mat input, output, lbp_desc;
-  // image.copyTo(input);
-  // double prediction;
-  // for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
-  //   cv::pyrDown(input,output,cv::Size(input.cols/stride,input.rows/stride));
-  //   for(int x = 0; x < output.rows; x++){
-  //     float *ptr_output = output.ptr<float>(x);
-  //     for(int y = 0; y < output.cols; y++){
-  //       cv::Mat roi = output(cv::Rect(x,y,winsize[1],winsize[0]));
-  //       fsiv_lbp_desc(roi,lbp_desc,ncells);
-  //       if(svm->predict(lbp_desc) > thr_det){
-  //         lRs.push_back(lbp_desc);
-  //         lscores.push_back(svm->predict(lbp_desc));
-  //       }
-  //     }
-  //   }
-  //   input = output;
-  // }
+  cv::Mat input, output, lbp_desc;
+  image.copyTo(input);
+
+  for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
+    if(i == 0){//en la primera pasada se trabaja sobre la imagen inicial
+      input.copyTo(output);
+      std::cerr<<"Tamaño de la imagen "<<i<<" = "<<output.rows<<"x"<<output.cols<<"\n";
+    }else{//a partir de la primera pasada reducimos la imagen inicial (piramide)
+      cv::pyrUp(input,output,cv::Size(input.cols*factor,input.rows*factor));
+      std::cerr<<"Tamaño de la imagen "<<i<<" = "<<output.rows<<"x"<<output.cols<<"\n";
+    }
+    for(int x = 0; x < output.rows - winsize[0]; x = x+stride){
+      for(int y = 0; y < output.cols - winsize[1]; y = y+stride){
+        // cv::Rect roi = cv::Rect(x,y,winsize[1],winsize[0]);
+        // cv::Mat roiImage = output(roi);
+        // fsiv_lbp_desc(roiImage,lbp_desc,ncells);
+        // if(svm->predict(lbp_desc) > thr_det){
+        //   lRs.push_back(roi);
+        //   lscores.push_back(svm->predict(lbp_desc));
+        // }
+      }
+      std::cerr<<"roi "<<x<<"\n";
+    }
+    std::cerr<<"Nivel numero "<<i<<"\n";
+    input = output;
+  }
+  std::cerr<<"Tamaño scores: "<<lscores.size()<<"\n";
+  for(int i = 0; i < lscores.size(); i++){
+    std::cerr<<"Score "<<i+1<<" "<<lscores[i]<<"\n";
+  }
 }
