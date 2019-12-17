@@ -118,7 +118,7 @@ main(int argc, char * argv[])
 		svm = cv::ml::SVM::create();
     	svm->setType(SVM::C_SVC);
     	svm->setC(c);
-    	svm->setKernel(SVM::LINEAR);
+    	svm->setKernel(SVM::INTER);
     	svm->setTermCriteria(cv::TermCriteria(cv::TermCriteria::MAX_ITER, 1000, 1e-3));
 		// ...
 
@@ -132,7 +132,7 @@ main(int argc, char * argv[])
 	   for (int i =0; i<npos; i++)
 	      train_labels_v.push_back(1);
 	   for (int i =0; i<nneg; i++)
-	      train_labels_v.push_back(-1);
+	      train_labels_v.push_back(2);
 
 	   cv::Mat labelsMat(npos+nneg, 1, CV_32SC1);
 	   for (int i =0; i < train_labels_v.size(); i++)
@@ -187,12 +187,12 @@ main(int argc, char * argv[])
 
 	for (int i = 0; i < nneg_test; i++)
 	{
-		true_labels.at<float>(npos_test+i,0) = 0;
+		true_labels.at<float>(npos_test+i,0) = 2;
 		predicted_labels.at<float>(npos_test+i,0) = MAX(0, predictions_neg.at<float>(i,0));
 	}
 
 	// Some statistics about performance
-	cv::Mat CM = compute_confusion_matrix(2, true_labels, predicted_labels);
+	cv::Mat CM = compute_confusion_matrix(2,true_labels-1, predicted_labels-1);
 
 	std::cout << CM << std::endl;
 

@@ -98,11 +98,22 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
 }
 
 void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores){
-  cv::Mat input, output, lbp_desc;
-  image.copyTo(input);
-  for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
-    cv::pyrUp(input,output,cv::Size(input.cols*stride,input.rows*stride));
-    fsiv_lbp_desc(output,lbp_desc,ncells);
-    input = output;
-  }
+  // cv::Mat input, output, lbp_desc;
+  // image.copyTo(input);
+  // double prediction;
+  // for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
+  //   cv::pyrDown(input,output,cv::Size(input.cols/stride,input.rows/stride));
+  //   for(int x = 0; x < output.rows; x++){
+  //     float *ptr_output = output.ptr<float>(x);
+  //     for(int y = 0; y < output.cols; y++){
+  //       cv::Mat roi = output(cv::Rect(x,y,winsize[1],winsize[0]));
+  //       fsiv_lbp_desc(roi,lbp_desc,ncells);
+  //       if(svm->predict(lbp_desc) > thr_det){
+  //         lRs.push_back(lbp_desc);
+  //         lscores.push_back(svm->predict(lbp_desc));
+  //       }
+  //     }
+  //   }
+  //   input = output;
+  // }
 }
