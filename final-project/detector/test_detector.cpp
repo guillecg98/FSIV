@@ -21,7 +21,7 @@ using namespace cv::ml;
 const cv::String keys =
     "{help h usage ? |      | print this message   }"
     "{model m        |model_svm.yml| path to model file.  }"
-    "{stride s       |2     | Stride value. Default 2.}"
+    "{stride s       |25     | Stride value. Default 2.}"
     "{thrdet t       |0     | Detection threshold. Default 0.}"
     "{levels l       |3     | Number of levels of pyramid search. Def. 3}"
     "{factor f       |0.5   | Scale factor for pyramid. Def. 0.5}"
@@ -134,6 +134,7 @@ main(int argc, char * argv[])
 
         //TODO: you must process the detected list of bb to non-maxima-supression.
         // see: https://docs.opencv.org/3.4/d6/d0f/group__dnn.html#ga9d118d70a1659af729d01b10233213ee
+        cv::dnn::NMSBoxes(lRs,lscores,thr_det,nmsThreshold,indices);
 
         //
 
@@ -151,18 +152,23 @@ main(int argc, char * argv[])
         {
             //TODO: draw a rectangle on image_orig with the annotated bb with green color.
             //Use 3 for thickness value.
-
+            cv::rectangle(image_orig,lRs[i],cv::Scalar(0,255,0),3);
 				//
         }
 
         // Draw detections
-
+        int random_colour_b = 0;
+        int random_colour_g = 0;
+        int random_colour_r = 0;
         for (int i = 0; i < detections.size(); i++)
         {
             //TODO: draw a rectangle on image_orig with the detected bb with color other than green.
             //Use 3 for thickness value.
             //Use random colors to differentiate between detected windows.
-
+            // random_colour_b = rand()%254;
+            // random_colour_g = rand()%254;
+            // random_colour_r = rand()%254;
+            // cv::rectangle(image_orig,lRs[i],cv::Scalar(random_colour_b,random_colour_g,random_colour_r),3);
 				//
         }
 
