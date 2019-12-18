@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named hard_negative_mining
+
+# Build rule for target.
+hard_negative_mining: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 hard_negative_mining
+.PHONY : hard_negative_mining
+
+# fast build rule for target.
+hard_negative_mining/fast:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/build
+.PHONY : hard_negative_mining/fast
+
+#=============================================================================
 # Target rules for targets named traintest
 
 # Build rule for target.
@@ -142,6 +155,7 @@ common_code.o: common_code.cpp.o
 
 # target to build an object file
 common_code.cpp.o:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/common_code.cpp.o
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/common_code.cpp.o
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/common_code.cpp.o
 .PHONY : common_code.cpp.o
@@ -152,6 +166,7 @@ common_code.i: common_code.cpp.i
 
 # target to preprocess a source file
 common_code.cpp.i:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/common_code.cpp.i
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/common_code.cpp.i
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/common_code.cpp.i
 .PHONY : common_code.cpp.i
@@ -162,9 +177,37 @@ common_code.s: common_code.cpp.s
 
 # target to generate assembly for a file
 common_code.cpp.s:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/common_code.cpp.s
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/common_code.cpp.s
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/common_code.cpp.s
 .PHONY : common_code.cpp.s
+
+hard_negative_mining.o: hard_negative_mining.cpp.o
+
+.PHONY : hard_negative_mining.o
+
+# target to build an object file
+hard_negative_mining.cpp.o:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/hard_negative_mining.cpp.o
+.PHONY : hard_negative_mining.cpp.o
+
+hard_negative_mining.i: hard_negative_mining.cpp.i
+
+.PHONY : hard_negative_mining.i
+
+# target to preprocess a source file
+hard_negative_mining.cpp.i:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/hard_negative_mining.cpp.i
+.PHONY : hard_negative_mining.cpp.i
+
+hard_negative_mining.s: hard_negative_mining.cpp.s
+
+.PHONY : hard_negative_mining.s
+
+# target to generate assembly for a file
+hard_negative_mining.cpp.s:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/hard_negative_mining.cpp.s
+.PHONY : hard_negative_mining.cpp.s
 
 lbp.o: lbp.cpp.o
 
@@ -172,6 +215,7 @@ lbp.o: lbp.cpp.o
 
 # target to build an object file
 lbp.cpp.o:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/lbp.cpp.o
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/lbp.cpp.o
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/lbp.cpp.o
 .PHONY : lbp.cpp.o
@@ -182,6 +226,7 @@ lbp.i: lbp.cpp.i
 
 # target to preprocess a source file
 lbp.cpp.i:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/lbp.cpp.i
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/lbp.cpp.i
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/lbp.cpp.i
 .PHONY : lbp.cpp.i
@@ -192,6 +237,7 @@ lbp.s: lbp.cpp.s
 
 # target to generate assembly for a file
 lbp.cpp.s:
+	$(MAKE) -f CMakeFiles/hard_negative_mining.dir/build.make CMakeFiles/hard_negative_mining.dir/lbp.cpp.s
 	$(MAKE) -f CMakeFiles/traintest.dir/build.make CMakeFiles/traintest.dir/lbp.cpp.s
 	$(MAKE) -f CMakeFiles/test_detector.dir/build.make CMakeFiles/test_detector.dir/lbp.cpp.s
 .PHONY : lbp.cpp.s
@@ -258,11 +304,15 @@ help:
 	@echo "... depend"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... hard_negative_mining"
 	@echo "... traintest"
 	@echo "... test_detector"
 	@echo "... common_code.o"
 	@echo "... common_code.i"
 	@echo "... common_code.s"
+	@echo "... hard_negative_mining.o"
+	@echo "... hard_negative_mining.i"
+	@echo "... hard_negative_mining.s"
 	@echo "... lbp.o"
 	@echo "... lbp.i"
 	@echo "... lbp.s"

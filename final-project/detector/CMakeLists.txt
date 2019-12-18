@@ -9,3 +9,4 @@ LINK_LIBRARIES(${OpenCV_LIBS})
 
 add_executable(traintest traintest.cpp common_code.cpp common_code.hpp lbp.cpp lbp.h)
 add_executable(test_detector test_detector common_code.cpp common_code.hpp lbp.cpp lbp.h)
+add_executable(hard_negative_mining hard_negative_mining.cpp common_code.cpp common_code.hpp lbp.cpp lbp.h)

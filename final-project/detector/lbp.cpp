@@ -3,7 +3,6 @@
 
 #include "lbp.h"
 #include <vector>
-#include <unistd.h>
 
 using namespace std;
 
@@ -114,7 +113,7 @@ void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int 
         cv::Mat roiImage = output(roi);
         fsiv_lbp_desc(roiImage,lbp_desc,ncells);
         //resize roi to original_image
-        roi = cv::Rect(x/pow(factor,i),y/pow(factor,i),winsize[1]/pow(factor,i),winsize[0]/pow(factor,i));
+        roi = cv::Rect(x/pow(factor,i),y/pow(factor,i),winsize[1],winsize[0]);
         svm->predict(lbp_desc,pred_score,1);
         float *ptr_result = pred_score.ptr<float>(0);
         if(ptr_result[0] >= thr_det){

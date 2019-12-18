@@ -1,4 +1,5 @@
 /home/gecoga98/Desktop/4º/FSIV/practicas/final-project/detector/build/CMakeFiles/rebuild_cache.dir
 /home/gecoga98/Desktop/4º/FSIV/practicas/final-project/detector/build/CMakeFiles/edit_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/final-project/detector/build/CMakeFiles/hard_negative_mining.dir
 /home/gecoga98/Desktop/4º/FSIV/practicas/final-project/detector/build/CMakeFiles/traintest.dir
 /home/gecoga98/Desktop/4º/FSIV/practicas/final-project/detector/build/CMakeFiles/test_detector.dir
