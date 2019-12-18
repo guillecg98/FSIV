@@ -139,7 +139,7 @@ main(int argc, char * argv[])
             //Use 3 for thickness value.
             //Use random colors to differentiate between detected windows.
             std::string str = to_string(numImagen);
-            std::string imname ="fp" + str + ".jpg";
+            std::string imname ="fpnew" + str + ".jpg";
             cv::Mat img_orig_roi = image_orig(detections[i]);
             cv::imwrite(imname,img_orig_roi);
             numImagen++;
