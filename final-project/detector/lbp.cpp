@@ -99,8 +99,7 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
 }
 
 void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores){
-  cv::Mat input, output, lbp_desc;
-  std::vector<cv::Mat> pyramid;
+  cv::Mat input, output, lbp_desc, pred_score;
   image.copyTo(input);
 
   for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
@@ -115,14 +114,16 @@ void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int 
         cv::Mat roiImage = output(roi);
         fsiv_lbp_desc(roiImage,lbp_desc,ncells);
         //resize roi to original_image
-        roi = cv::Rect((i*x)/factor,(i*y)/factor,(i*winsize[1])/factor,(i*winsize[0])/factor);
-        if(svm->predict(lbp_desc) == 1){
+        roi = cv::Rect(x/factor,y/factor,winsize[1]/factor,winsize[0]/factor);
+        svm->predict(lbp_desc,pred_score,true);
+        float *ptr_result = pred_score.ptr<float>(0);
+        if(ptr_result[0] >= thr_det){
           lRs.push_back(roi);
-          lscores.push_back(svm->predict(lbp_desc));
+          lscores.push_back(ptr_result[0]);
         }
       }
     }
-    std::cerr<<"Nivel numero "<<i<<"\n";
+    std::cerr<<"Pyramid level #"<<i+1<<"\n";
     input = output;
   }
   std::cerr<<"Rois = "<<lRs.size()<<"\n";
