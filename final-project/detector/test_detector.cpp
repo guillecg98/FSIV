@@ -21,7 +21,7 @@ using namespace cv::ml;
 const cv::String keys =
     "{help h usage ? |      | print this message   }"
     "{model m        |model_svm.yml| path to model file.  }"
-    "{stride s       |25     | Stride value. Default 2.}"
+    "{stride s       |2     | Stride value. Default 2.}"
     "{thrdet t       |0     | Detection threshold. Default 0.}"
     "{levels l       |3     | Number of levels of pyramid search. Def. 3}"
     "{factor f       |0.5   | Scale factor for pyramid. Def. 0.5}"

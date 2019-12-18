@@ -101,7 +101,6 @@ float fsiv_chisquared_dist(const cv::Mat & h1, const cv::Mat & h2){
 void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int *winsize, int stride, int * ncells, int nlevels, float factor, float thr_det, std::vector<cv::Rect> & lRs, std::vector<float> & lscores){
   cv::Mat input, output, lbp_desc, pred_score;
   image.copyTo(input);
-  int label;
 
   for(int i = 0; i < nlevels; i++){//por cada nivel achicamos la imagen
     if(i == 0){//en la primera pasada se trabaja sobre la imagen inicial
@@ -115,11 +114,10 @@ void fsiv_detect_pyr(const cv::Mat & image, const cv::Ptr<SVM> & svm, const int 
         cv::Mat roiImage = output(roi);
         fsiv_lbp_desc(roiImage,lbp_desc,ncells);
         //resize roi to original_image
-        //roi = cv::Rect(x/factor,y/factor,winsize[1]/factor,winsize[0]/factor);
-        label = svm->predict(lbp_desc);
+        roi = cv::Rect(x/pow(factor,i),y/pow(factor,i),winsize[1]/pow(factor,i),winsize[0]/pow(factor,i));
         svm->predict(lbp_desc,pred_score,1);
         float *ptr_result = pred_score.ptr<float>(0);
-        if( label == 1 && ptr_result[0] >= thr_det){
+        if(ptr_result[0] >= thr_det){
           lRs.push_back(roi);
           lscores.push_back(ptr_result[0]);
         }
