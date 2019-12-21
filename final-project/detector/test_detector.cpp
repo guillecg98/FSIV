@@ -78,6 +78,7 @@ main(int argc, char * argv[])
     float t_total = 0.0;
     float tp_total = 0.0;
     float fp_total = 0.0;
+    int num_image = 1;
 
     // Loop on dataset images, annotations
     while(dataset && !dataset.eof())
@@ -167,10 +168,13 @@ main(int argc, char * argv[])
             random_colour_b = rand()%254;
             random_colour_r = rand()%254;
             cv::rectangle(image_orig,detections[i],cv::Scalar(random_colour_b,0,random_colour_r),3);
+
 				//
         }
 
         int tp, fp;
+        std::string str = to_string(num_image);
+        std::string image_name = "detection_" + str + ".jpg";
         compute_tp_fp(annotated_boxes, detections, iou_th, tp, fp);
         std::cout << "#ann: " << annotated_boxes.size() << " tp: " << tp << " fp: " << fp << std::endl;
         t_total += annotated_boxes.size();
@@ -178,7 +182,9 @@ main(int argc, char * argv[])
         fp_total += fp;
         num_imgs += 1.0;
         cv::imshow("Detection", image_orig);
+        cv::imwrite(image_name,image_orig);
         cv::waitKey(-1);
+        num_image++;
     }
 
     std::cout << "\t\t### SUMMARY ####" << std::endl;
