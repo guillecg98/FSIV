@@ -183,7 +183,7 @@ main(int argc, char * argv[])
         num_imgs += 1.0;
         cv::imshow("Detection", image_orig);
         cv::imwrite(image_name,image_orig);
-        cv::waitKey(-1);
+        //cv::waitKey(-1);
         num_image++;
     }
 
