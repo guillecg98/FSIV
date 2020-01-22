@@ -1,3 +1,3 @@
-/home/gecoga98/Escritorio/4º/FSIV/task-1/build/CMakeFiles/rebuild_cache.dir
-/home/gecoga98/Escritorio/4º/FSIV/task-1/build/CMakeFiles/task1.dir
-/home/gecoga98/Escritorio/4º/FSIV/task-1/build/CMakeFiles/edit_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-1/build/CMakeFiles/rebuild_cache.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-1/build/CMakeFiles/task1.dir
+/home/gecoga98/Desktop/4º/FSIV/practicas/practical-assignments/task-1/build/CMakeFiles/edit_cache.dir
